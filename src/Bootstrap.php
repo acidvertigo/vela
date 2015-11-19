@@ -49,7 +49,7 @@ if (getenv('HTTP_CLIENT_IP'))
     else
         $userIp = 'UNKNOWN';
 
-$robots = array(
+$robots = [
     'googlebot'     => 'Googlebot',
     'msnbot'        => 'MSNBot',
     'baiduspider'   => 'Baiduspider',
@@ -61,7 +61,7 @@ $robots = array(
     'infoseek'      => 'InfoSeek Robot 1.0',
     'lycos'         => 'Lycos',
     'yandex'        => 'YandexBot'
-);
+];
 
 $isRobot = false;
 foreach ($robots as $robot) 
