@@ -1,6 +1,6 @@
 <?php
 
-namespace Example;
+namespace Vela;
 
 require __DIR__ . '/../vendor/autoload.php';
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Example\Controllers;
+namespace Vela\Controllers;
 
 use \Sabre\HTTP\Request;
 use \Sabre\HTTP\Response;
