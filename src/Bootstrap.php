@@ -50,17 +50,17 @@ if (getenv('HTTP_CLIENT_IP'))
         $userIp = 'UNKNOWN';
 
 $robots = [
-    'googlebot'     => 'Googlebot',
-    'msnbot'        => 'MSNBot',
-    'baiduspider'   => 'Baiduspider',
-    'bingbot'       => 'Bing',
-    'slurp'         => 'Inktomi Slurp',
-    'yahoo'         => 'Yahoo',
-    'askjeeves'     => 'AskJeeves',
-    'fastcrawler'   => 'FastCrawler',
-    'infoseek'      => 'InfoSeek Robot 1.0',
-    'lycos'         => 'Lycos',
-    'yandex'        => 'YandexBot'
+    'googlebot',
+    'msnbot',
+    'baiduspider',
+    'bingbot',
+    'slurp',
+    'yahoo',
+    'askjeeves',
+    'fastcrawler',
+    'infoseek',
+    'lycos',
+    'yandex'
 ];
 
 $isRobot = false;
