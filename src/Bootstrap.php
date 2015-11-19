@@ -49,19 +49,7 @@ if (getenv('HTTP_CLIENT_IP'))
     else
         $userIp = 'UNKNOWN';
 
-$robots = [
-    'googlebot',
-    'msnbot',
-    'baiduspider',
-    'bingbot',
-    'slurp',
-    'yahoo',
-    'askjeeves',
-    'fastcrawler',
-    'infoseek',
-    'lycos',
-    'yandex'
-];
+$robots = include 'Robots.php';
 
 $isRobot = false;
 foreach ($robots as $robot) 
