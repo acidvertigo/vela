@@ -6,10 +6,16 @@ use \Sabre\HTTP\Request;
 use \Sabre\HTTP\Response;
 use \Purl\Url;
 
+/**
+ * Homepage Controller
+ */
 class Homepage
 {
+    /** @var object $response **/
     private $response;
+    /** @var object $response **/
     private $request;
+    /** @var object $response **/
     private $url;
 
     public function __construct(Response $response, Request $request, Url $url)

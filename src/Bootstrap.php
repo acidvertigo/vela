@@ -74,6 +74,7 @@ foreach ($robots as $robot) {
 
 if (!$isRobot)
 { 
+    //Initialize session object
     $session_factory = new \Aura\Session\SessionFactory;
     $session = $session_factory->newInstance($_COOKIE);
 
@@ -125,7 +126,6 @@ $routeDefinitionCallback = function (\FastRoute\RouteCollector $r) {
         $r->addRoute($route[0], $route[1], $route[2]);
     }
 };
-
 
 $dispatcher = \FastRoute\simpleDispatcher($routeDefinitionCallback);
 $routeInfo = $dispatcher->dispatch($request->getMethod(), '/'.$request->getPath());
