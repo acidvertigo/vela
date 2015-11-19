@@ -1,12 +1,12 @@
 {
-    "name": "Project name",
-    "description": "Your project description",
-    "keywords": ["Your keyword", "Another keyword"],
+    "name": "Vela",
+    "description": "Ecommerce app based on external packages",
+    "keywords": ["Vela", "Ecommerce"],
     "license": "MIT",
     "authors": [
         {
-            "name": "Your Name",
-            "email": "your@email.com",
+            "name": "acidvertigo",
+            "email": "ldanzelmo@gmail.com",
             "role": "Creator / Main Developer"
         }
     ],
@@ -21,7 +21,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Example\\": "src/"
+            "Vela\\": "src/"
         }
     }
 }
