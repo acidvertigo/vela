@@ -138,7 +138,7 @@ switch ($routeInfo[0]) {
         break;
     case \FastRoute\Dispatcher::METHOD_NOT_ALLOWED:
         $allowedMethods = $routeInfo[1];
-        $response->setHeader('Allow:', $allowedMethods);
+        $response->setHeader('Allow', $allowedMethods);
         $response->setBody('405 - Method not allowed');
         $response->setStatus(405);
         \Sabre\HTTP\Sapi::sendResponse($response);
