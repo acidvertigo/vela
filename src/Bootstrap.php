@@ -49,7 +49,7 @@ if (getenv('HTTP_CLIENT_IP'))
     else
         $userIp = 'UNKNOWN';
 
-$robots = include 'Robots.php';
+$robots = include 'Config/Robots.php';
 
 $isRobot = false;
 foreach ($robots as $robot) 
@@ -100,7 +100,7 @@ if (isset($session))
  * Initialize router
  */
 $routeDefinitionCallback = function (\FastRoute\RouteCollector $r) {
-    $routes = include('Routes.php');
+    $routes = include('Config/Routes.php');
     foreach ($routes as $route) {
         $r->addRoute($route[0], $route[1], $route[2]);
     }
