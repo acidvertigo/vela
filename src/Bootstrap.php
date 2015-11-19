@@ -64,7 +64,8 @@ $robots = array(
 );
 
 $isRobot = false;
-foreach ($robots as $robot) {
+foreach ($robots as $robot) 
+{
     if(strpos(strtolower($userAgent), $robot) !== false)
     {
        $isRobot = true;
@@ -82,12 +83,7 @@ if (!$isRobot)
     $segment->set('IPaddress', $userIp);
     $segment->set('userAgent', $userAgent);
 
-    if ($segment->get('IPaddress') != $userIp)
-    {
-       $session->regenerateId();
-    }
-
-    if( $segment->get('userAgent') != $userAgent)
+    if ($segment->get('IPaddress') != $userIp || $segment->get('userAgent') != $userAgent)
     {
        $session->regenerateId();
     }
