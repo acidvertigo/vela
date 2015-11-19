@@ -1,0 +1,27 @@
+{
+    "name": "Project name",
+    "description": "Your project description",
+    "keywords": ["Your keyword", "Another keyword"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Your Name",
+            "email": "your@email.com",
+            "role": "Creator / Main Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.5.0",
+        "filp/whoops": ">=1.1.2",
+        "sabre/http" : ">=4.0.0",
+        "nikic/fast-route": ">=0.6.0",
+        "rdlowrey/auryn": ">=1.1.0",
+        "jwage/purl": "dev-master",
+        "aura/session": ">=2.0.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Example\\": "src/"
+        }
+    }
+}
