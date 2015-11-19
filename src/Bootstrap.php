@@ -81,11 +81,6 @@ if (!$isRobot)
     $segment = $session->getSegment('User');
     $segment->set('IPaddress', $userIp);
     $segment->set('userAgent', $userAgent);
-    
-    if(!$segment->get('IPaddress') || !$segment->get('userAgent'))
-    {
-       $session->regenerateId();
-    }
 
     if ($segment->get('IPaddress') != $userIp)
     {
