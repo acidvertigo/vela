@@ -101,7 +101,7 @@ if (!$isRobot)
  * Start url parser
  */
 $url = \Purl\Url::fromCurrent();
-var_dump ($_SESSION);
+
 /**
  * Start dic container
  */
