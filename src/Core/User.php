@@ -44,7 +44,6 @@ Class User
       if(strpos(strtolower($userAgent), $robot) !== false)
       {
         return true;
-        break;
       }
     }
 
