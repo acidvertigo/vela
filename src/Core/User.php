@@ -22,22 +22,23 @@ Class User
     if (getenv('HTTP_CLIENT_IP'))
     {
             $userIp = getenv('HTTP_CLIENT_IP');
-    } else if(getenv('HTTP_X_FORWARDED_FOR'))
+    } else if (getenv('HTTP_X_FORWARDED_FOR'))
     {
             $userIp = getenv('HTTP_X_FORWARDED_FOR');
-    } else if(getenv('HTTP_X_FORWARDED'))
+    } else if (getenv('HTTP_X_FORWARDED'))
     {
             $userIp = getenv('HTTP_X_FORWARDED');
-    } else if(getenv('HTTP_FORWARDED_FOR'))
+    } else if (getenv('HTTP_FORWARDED_FOR'))
     {
             $userIp = getenv('HTTP_FORWARDED_FOR');
-    } else if(getenv('HTTP_FORWARDED'))
+    } else if (getenv('HTTP_FORWARDED'))
     {
             $userIp = getenv('HTTP_FORWARDED');
-    } else if(getenv('REMOTE_ADDR'))
+    } else if (getenv('REMOTE_ADDR'))
     {
             $userIp = getenv('REMOTE_ADDR');
-    } else {
+    } else
+    {
             $userIp = 'UNKNOWN';
     }
 
@@ -48,7 +49,7 @@ Class User
   {
     foreach ($robots as $robot)
     {
-      if(strpos(strtolower($userAgent), $robot) !== false)
+      if (strpos(strtolower($userAgent), $robot) !== false)
       {
         return true;
       }
