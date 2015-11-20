@@ -9,6 +9,7 @@ use \Sabre\HTTP\Request;
  */
 Class User
 {
+    /** @var object $request **/
     private $request;
     
     public function __construct(Request $request)
