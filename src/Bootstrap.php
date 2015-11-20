@@ -13,9 +13,11 @@ $environment = 'development';
 * Register the error handler
 */
 $whoops = new \Whoops\Run;
-if ($environment !== 'production') {
+if ($environment !== 'production')
+{
     $whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
-} else {
+} else
+{
     $whoops->pushHandler(function($e){
         echo 'Friendly error page and send an email to the developer';
     });
@@ -49,7 +51,7 @@ $robots = require 'Config/Robots.php';
 $isRobot = $user->isRobot($userAgent, $robots);
 
 if (!$isRobot)
-{ 
+{
     //Initialize session object
     $session_factory = new \Aura\Session\SessionFactory;
     $session = $session_factory->newInstance($_COOKIE);
@@ -82,14 +84,16 @@ if (isset($session))
  */
 $routeDefinitionCallback = function (\FastRoute\RouteCollector $r) {
     $routes = include('Config/Routes.php');
-    foreach ($routes as $route) {
+    foreach ($routes as $route)
+    {
         $r->addRoute($route[0], $route[1], $route[2]);
     }
 };
 
 $dispatcher = \FastRoute\simpleDispatcher($routeDefinitionCallback);
 $routeInfo = $dispatcher->dispatch($request->getMethod(), '/'.$request->getPath());
-switch ($routeInfo[0]) {
+switch ($routeInfo[0])
+{
     case \FastRoute\Dispatcher::NOT_FOUND:
         $response->setBody('404 - Page not found');
         $response->setStatus(404);
