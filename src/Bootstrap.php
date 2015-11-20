@@ -29,25 +29,20 @@ $request = \Sabre\HTTP\Sapi::getRequest();
 $response = new \Sabre\HTTP\Response();
 
 /**
+ * Start dic container
+ */
+$dic = new \Auryn\Injector;
+$dic->share($request);
+$dic->share($response);
+
+/**
  * Start session object if user is not a robot
  */
-$userAgent = $request->getRawServerValue('HTTP_USER_AGENT');
+$user = $dic->make('\Vela\Core\User');
+$dic->share($user);
 
-$userIp = '';
-if (getenv('HTTP_CLIENT_IP'))
-        $userIp = getenv('HTTP_CLIENT_IP');
-    else if(getenv('HTTP_X_FORWARDED_FOR'))
-        $userIp = getenv('HTTP_X_FORWARDED_FOR');
-    else if(getenv('HTTP_X_FORWARDED'))
-        $userIp = getenv('HTTP_X_FORWARDED');
-    else if(getenv('HTTP_FORWARDED_FOR'))
-        $userIp = getenv('HTTP_FORWARDED_FOR');
-    else if(getenv('HTTP_FORWARDED'))
-        $userIp = getenv('HTTP_FORWARDED');
-    else if(getenv('REMOTE_ADDR'))
-        $userIp = getenv('REMOTE_ADDR');
-    else
-        $userIp = 'UNKNOWN';
+$userAgent = $user->getUserAgent();
+$userIp = $user->getUserIp();
 
 $robots = include 'Config/Robots.php';
 
@@ -82,14 +77,7 @@ if (!$isRobot)
  */
 $url = \Purl\Url::fromCurrent();
 
-/**
- * Start dic container
- */
-$dic = new \Auryn\Injector;
-
 // share dependencies
-$dic->share($request);
-$dic->share($response);
 $dic->share($url);
 if (isset($session))
 {
