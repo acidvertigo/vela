@@ -18,7 +18,7 @@ if ($environment !== 'production')
     $whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
 } else
 {
-    $whoops->pushHandler(function($e) {
+    $whoops->pushHandler(function() {
         echo 'Friendly error page and send an email to the developer';
     });
 }
