@@ -47,7 +47,7 @@ $userAgent = $user->getUserAgent();
 $userIp    = $user->getUserIp();
 
 //check if user is a robot
-$robots = require 'Config/Robots.php';
+$robots  = require 'Config/Robots.php';
 $isRobot = $user->isRobot($userAgent, $robots);
 
 if (!$isRobot)
@@ -83,7 +83,7 @@ if (isset($session))
  * Initialize router
  */
 $routeDefinitionCallback = function(\FastRoute\RouteCollector $r) {
-    $routes              = include('Config/Routes.php');
+    $routes = include('Config/Routes.php');
     foreach ($routes as $route)
     {
         $r->addRoute($route[0], $route[1], $route[2]);
@@ -91,7 +91,7 @@ $routeDefinitionCallback = function(\FastRoute\RouteCollector $r) {
 };
 
 $dispatcher = \FastRoute\simpleDispatcher($routeDefinitionCallback);
-$routeInfo = $dispatcher->dispatch($request->getMethod(), '/'.$request->getPath());
+$routeInfo  = $dispatcher->dispatch($request->getMethod(), '/'.$request->getPath());
 switch ($routeInfo[0])
 {
     case \FastRoute\Dispatcher::NOT_FOUND:
