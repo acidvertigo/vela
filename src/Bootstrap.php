@@ -66,7 +66,7 @@ if (!$isRobot)
             $session->regenerateId();
         }
 
-  $dic->share($session);
+    $dic->share($session);
 }
 
 /**
