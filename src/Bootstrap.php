@@ -57,27 +57,23 @@ if (!$isRobot)
     $session         = $session_factory->newInstance($_COOKIE);
 
     $segment = $session->getSegment('User');
-    if ($segment->get('IPaddress') != $userIp || $segment->get('userAgent') != $userAgent)
-    {
-        $session->clear();
-        $segment = $session->getSegment('User');
-        $segment->set('IPaddress', $userIp);
-        $segment->set('userAgent', $userAgent);
-        $session->regenerateId();
-    }
+        if ($segment->get('IPaddress') != $userIp || $segment->get('userAgent') != $userAgent)
+        {
+            $session->clear();
+            $segment = $session->getSegment('User');
+            $segment->set('IPaddress', $userIp);
+            $segment->set('userAgent', $userAgent);
+            $session->regenerateId();
+        }
+
+  $dic->share($session);
 }
 
 /**
  * Start url parser
  */
 $url = \Purl\Url::fromCurrent();
-
-// share dependencies
 $dic->share($url);
-if (isset($session))
-{
-    $dic->share($session);
-}
 
 /**
  * Initialize router
