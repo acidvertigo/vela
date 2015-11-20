@@ -43,7 +43,7 @@ $dic->share($user);
 
 $userAgent = $user->getUserAgent();
 $userIp = $user->getUserIp();
-$robots = require 'src/Config/Robots.php';
+$robots = require 'Config/Robots.php';
 $isRobot = $user->isRobot($userAgent, $robots);
 
 if (!$isRobot)
