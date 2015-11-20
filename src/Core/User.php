@@ -37,5 +37,21 @@ Class User
 
     return $userIp;
   }
+  
+  public function isRobot($userAgent)
+  {
+    $robots = require 'src/Config/Robots.php';
+
+    foreach ($robots as $robot) 
+    {
+      if(strpos(strtolower($userAgent), $robot) !== false)
+      {
+        return true;
+        break;
+      }
+    }
+
+    return false;
+  }
 
 }
