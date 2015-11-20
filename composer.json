@@ -13,12 +13,12 @@
     ],
     "minimum-stability": "stable",
     "require": {
-        "php": ">=5.4.0",
+        "php": ">=5.5.0",
         "filp/whoops": ">=1.1.2",
         "sabre/http" : ">=4.0.0",
         "nikic/fast-route": ">=0.6.0",
         "rdlowrey/auryn": ">=1.1.0",
-        "jwage/purl": "master",
+        "jwage/purl": "dev-master",
         "aura/session": ">=2.0.1"
     },
     "autoload": {
