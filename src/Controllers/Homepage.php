@@ -28,7 +28,6 @@ class Homepage
     public function show()
     {
         $data = $this->request->getQueryParameters();
-        $link = $this->url->set('path', 'about/me');
         $url = $this->url->getUrl();
         $this->response->setBody('Hello World ' . $data['name'] . ' current url ' . $url);
         \Sabre\HTTP\Sapi::sendResponse($this->response);
