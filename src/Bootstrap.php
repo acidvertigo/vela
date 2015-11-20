@@ -63,12 +63,13 @@ if (!$isRobot)
     $session = $session_factory->newInstance($_COOKIE);
 
     $segment = $session->getSegment('User');
-    $segment->set('IPaddress', $userIp);
-    $segment->set('userAgent', $userAgent);
-
     if ($segment->get('IPaddress') != $userIp || $segment->get('userAgent') != $userAgent)
     {
-       $session->regenerateId();
+        $session->clear();
+        $segment = $session->getSegment('User');
+        $segment->set('IPaddress', $userIp);
+        $segment->set('userAgent', $userAgent);
+        $session->regenerateId();
     }
 }
 
