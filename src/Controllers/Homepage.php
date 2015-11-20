@@ -21,8 +21,8 @@ class Homepage
     public function __construct(Response $response, Request $request, Url $url)
     {
         $this->response = $response;
-        $this->request = $request;
-        $this->url = $url;
+        $this->request  = $request;
+        $this->url      = $url;
     }
 
     public function show()
