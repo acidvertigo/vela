@@ -27,7 +27,7 @@ $whoops->register();
 /**
  * Start Request REsponse Objects
  */
-$request = \Sabre\HTTP\Sapi::getRequest();
+$request  = \Sabre\HTTP\Sapi::getRequest();
 $response = new \Sabre\HTTP\Response();
 
 /**
@@ -44,7 +44,7 @@ $user = $dic->make('\Vela\Core\User');
 $dic->share($user);
 
 $userAgent = $user->getUserAgent();
-$userIp = $user->getUserIp();
+$userIp    = $user->getUserIp();
 
 //check if user is a robot
 $robots = require 'Config/Robots.php';
@@ -54,7 +54,7 @@ if (!$isRobot)
 {
     //Initialize session object
     $session_factory = new \Aura\Session\SessionFactory;
-    $session = $session_factory->newInstance($_COOKIE);
+    $session         = $session_factory->newInstance($_COOKIE);
 
     $segment = $session->getSegment('User');
     if ($segment->get('IPaddress') != $userIp || $segment->get('userAgent') != $userAgent)
@@ -83,7 +83,7 @@ if (isset($session))
  * Initialize router
  */
 $routeDefinitionCallback = function(\FastRoute\RouteCollector $r) {
-    $routes = include('Config/Routes.php');
+    $routes              = include('Config/Routes.php');
     foreach ($routes as $route)
     {
         $r->addRoute($route[0], $route[1], $route[2]);
@@ -110,9 +110,9 @@ switch ($routeInfo[0])
         break;
     case \FastRoute\Dispatcher::FOUND:
         $className = $routeInfo[1][0];
-        $method = $routeInfo[1][1];
-        $vars = $routeInfo[2];
-        $class = $dic->make($className);
+        $method    = $routeInfo[1][1];
+        $vars      = $routeInfo[2];
+        $class     = $dic->make($className);
         $class->$method($vars);
         break;
 }
