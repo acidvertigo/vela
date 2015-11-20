@@ -11,7 +11,7 @@
             "role": "Creator / Main Developer"
         }
     ],
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "require": {
         "php": ">=5.5.0",
         "filp/whoops": ">=1.1.2",
