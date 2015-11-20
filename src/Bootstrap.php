@@ -79,7 +79,7 @@ $dic->share($url);
  * Initialize router
  */
 $routeDefinitionCallback = function(\FastRoute\RouteCollector $r) {
-    $routes = require ('Config/Routes.php');
+    $routes = require 'Config/Routes.php';
     foreach ($routes as $route)
     {
         $r->addRoute($route[0], $route[1], $route[2]);
