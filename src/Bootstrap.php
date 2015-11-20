@@ -44,17 +44,7 @@ $dic->share($user);
 $userAgent = $user->getUserAgent();
 $userIp = $user->getUserIp();
 
-$robots = include 'Config/Robots.php';
-
-$isRobot = false;
-foreach ($robots as $robot) 
-{
-    if(strpos(strtolower($userAgent), $robot) !== false)
-    {
-       $isRobot = true;
-       break;
-    }
-}
+$isRobot = $user->isRobot($userAgent);
 
 if (!$isRobot)
 { 
