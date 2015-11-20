@@ -19,7 +19,7 @@ Class User
     
     /**
      * Retrieve the user agent string
-     * @return string The user agent string
+     * @return string|null The user agent string
      */
     public function getUserAgent()
     {
