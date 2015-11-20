@@ -5,20 +5,20 @@ use \Sabre\HTTP\Request;
 
 Class User
 {
-  private $request;
+    private $request;
   
-  public function __construct(Request $request)
-  {
-      $this->request = $request;
-  }
+    public function __construct(Request $request)
+    {
+        $this->request = $request;
+    }
   
-  public function getUserAgent()
-  {
-      return $this->request->getRawServerValue('HTTP_USER_AGENT');
-  }
+    public function getUserAgent()
+    {
+        return $this->request->getRawServerValue('HTTP_USER_AGENT');
+    }
 
-  public function getUserIp()
-  {
+    public function getUserIp()
+    {
     if (getenv('HTTP_CLIENT_IP'))
     {
             $userIp = getenv('HTTP_CLIENT_IP');
@@ -43,19 +43,19 @@ Class User
     }
 
     return $userIp;
-  }
+    }
   
-  public function isRobot($userAgent, array $robots = [])
-  {
+    public function isRobot($userAgent, array $robots = [])
+    {
     foreach ($robots as $robot)
     {
-      if (strpos(strtolower($userAgent), $robot) !== false)
-      {
+        if (strpos(strtolower($userAgent), $robot) !== false)
+        {
         return true;
-      }
+        }
     }
 
     return false;
-  }
+    }
 
 }

@@ -2,7 +2,7 @@
 
 namespace Vela;
 
-require __DIR__ . '/../vendor/autoload.php';
+require __DIR__.'/../vendor/autoload.php';
 
 error_reporting(E_ALL|E_STRICT);
 
@@ -18,7 +18,7 @@ if ($environment !== 'production')
     $whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
 } else
 {
-    $whoops->pushHandler(function($e){
+    $whoops->pushHandler(function($e) {
         echo 'Friendly error page and send an email to the developer';
     });
 }
@@ -82,7 +82,7 @@ if (isset($session))
 /**
  * Initialize router
  */
-$routeDefinitionCallback = function (\FastRoute\RouteCollector $r) {
+$routeDefinitionCallback = function(\FastRoute\RouteCollector $r) {
     $routes = include('Config/Routes.php');
     foreach ($routes as $route)
     {
