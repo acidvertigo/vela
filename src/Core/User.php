@@ -19,7 +19,6 @@ Class User
 
   public function getUserIp()
   {
-    $userIp = '';
     if (getenv('HTTP_CLIENT_IP'))
         $userIp = getenv('HTTP_CLIENT_IP');
     else if(getenv('HTTP_X_FORWARDED_FOR'))
