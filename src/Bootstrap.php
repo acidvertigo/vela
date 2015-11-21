@@ -119,7 +119,7 @@ if (!$isRobot)
     $segment->set('last_activity', time());
 
     // delete session expired also server side
-    if($segment->get('start_time') < (strtotime('-1 hours')) || $segment->get('start_time') < (strtotime('-20 mins')))
+    if($segment->get('start_time') < (strtotime('-1 hours')) || $segment->get('last_activity') < (strtotime('-20 mins')))
     {
         $session->clear();
         $session->destroy();
