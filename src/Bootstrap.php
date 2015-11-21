@@ -9,7 +9,7 @@ error_reporting(E_ALL|E_STRICT);
 // define environment
 $environment = 'development';
 
-require 'Config.php/Config.php'
+$config = require 'Config.php/Config.php';
 
 /**
 * Register the error handler
@@ -29,7 +29,7 @@ $whoops->register();
 /**
  * Initialize datetime
  */
-$time = new \ICanBoogie\DateTime('now', 'Europe/Rome');
+$time = new \ICanBoogie\DateTime('now', $config['locale']['timezone']);
 
 /**
  * Start Request Response Objects
