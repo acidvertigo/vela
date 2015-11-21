@@ -76,5 +76,4 @@ Class User
 
     return false;
     }
-
 }
