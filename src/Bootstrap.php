@@ -9,7 +9,7 @@ error_reporting(E_ALL|E_STRICT);
 // define environment
 $environment = 'development';
 
-$config = require 'Config.php/Config.php';
+$config = require 'Config/Config.php';
 
 /**
 * Register the error handler
