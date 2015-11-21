@@ -38,6 +38,12 @@ $dic->share($request);
 $dic->share($response);
 
 /**
+ * Start url parser
+ */
+$url = \Purl\Url::fromCurrent();
+$dic->share($url);
+
+/**
  * Start session object if user is not a robot
  */
 $user = $dic->make('\Vela\Core\User');
@@ -56,24 +62,40 @@ if (!$isRobot)
     $session_factory = new \Aura\Session\SessionFactory;
     $session         = $session_factory->newInstance($_COOKIE);
 
+	// set cookie parameters
+    $session->setCookieParams(['lifetime' => 3600, 'path' => '/', 'domain' => $url['host'], 'secure' => $url['port'] == '443' ? true : false, 'httponly' => true]);
+
     $segment = $session->getSegment('User');
-        if ($segment->get('IPaddress') != $userIp || $segment->get('userAgent') != $userAgent)
-        {
-            $session->clear();
-            $segment = $session->getSegment('User');
-            $segment->set('IPaddress', $userIp);
-            $segment->set('userAgent', $userAgent);
-            $session->regenerateId();
-        }
+
+	// prevent session hijacking
+    if ($segment->get('IPaddress') != $userIp || $segment->get('userAgent') != $userAgent)
+    {
+        $session->clear();
+        $segment = $session->getSegment('User');
+        $segment->set('IPaddress', $userIp);
+        $segment->set('userAgent', $userAgent);
+        $segment->set('isSsl', $url['port'] !== 443 ? true : false);
+        $session->regenerateId();
+    }
+
+	// regenerate session id and set cookie secure flag when switching between http and https
+    if($segment->get('isSsl') == false && $url['port'] == '443')
+    {
+        
+        $segment->set('isSsl', true);
+        $session->setCookieParams(['secure' => true]);
+		$session->regenerateId();
+    }
+        
+    if($segment->get('isSsl') == true && $url['port'] !== '443')
+    {
+        $segment->set('isSsl', false);
+        $session->setCookieParams(['secure' => false]);
+		$session->regenerateId();
+    }
 
     $dic->share($session);
 }
-
-/**
- * Start url parser
- */
-$url = \Purl\Url::fromCurrent();
-$dic->share($url);
 
 /**
  * Initialize router
