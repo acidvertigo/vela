@@ -46,18 +46,20 @@ $request  = \Sabre\HTTP\Sapi::getRequest();
 $response = new \Sabre\HTTP\Response();
 
 /**
+ * Start url parser
+ */
+$url = \Purl\Url::fromCurrent();
+
+/**
  * Start dic container
  */
 $dic = new \Auryn\Injector;
+
+// Share object instances
 $dic->share($db);
 $dic->share($request);
 $dic->share($response);
 $dic->share($time);
-
-/**
- * Start url parser
- */
-$url = \Purl\Url::fromCurrent();
 $dic->share($url);
 
 /**
