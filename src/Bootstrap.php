@@ -67,13 +67,13 @@ $isRobot = $user->isRobot($userAgent, $robots);
 if (!$isRobot)
 {
     /**
-	 * Initialize session object
-	 */
+     * Initialize session object
+     */
     $session_factory = new \Aura\Session\SessionFactory;
     $session         = $session_factory->newInstance($_COOKIE);
-	
-	// set session name
-	$session->setName('vela_id');
+
+    // set session name
+    $session->setName('vela_id');
 
 	// set cookie parameters
     $session->setCookieParams(['lifetime' => 3600, 'path' => '/', 'domain' => $url['host'], 'secure' => $url['port'] == '443' ? true : false, 'httponly' => true]);
@@ -84,7 +84,7 @@ if (!$isRobot)
     if ($segment->get('IPaddress') != $userIp || $segment->get('userAgent') != $userAgent)
     {
         $session->clear();
-		$session->destroy();
+        $session->destroy();
         $segment = $session->getSegment('User');
         $segment->set('IPaddress', $userIp);
         $segment->set('userAgent', $userAgent);
@@ -92,35 +92,35 @@ if (!$isRobot)
         $session->regenerateId();
     }
 
-	// regenerate session id and set cookie secure flag when switching between http and https
-	if($segment->get('isSsl') == false && $url['port'] == '443')
+    // regenerate session id and set cookie secure flag when switching between http and https
+    if($segment->get('isSsl') == false && $url['port'] == '443')
     {
         $segment->set('isSsl', true);
         $session->setCookieParams(['secure' => true]);
-		$session->regenerateId();
+        $session->regenerateId();
     }
         
     if($segment->get('isSsl') == true && $url['port'] !== '443')
     {
         $segment->set('isSsl', false);
         $session->setCookieParams(['secure' => false]);
-		$session->regenerateId();
+        $session->regenerateId();
     }
-	
-    // record session activity
-	if(!$segment->get('start_time'))
-	{
-	    $segment->set('start_time', time());
-	}
-	
-	$segment->set('last_activity', time());
 
-	// delete session expired also server side
-	if($segment->get('start_time') < (strtotime('-1 hours')) || $segment->get('start_time') < (strtotime('-20 mins')))
-	{
-		$session->clear();
-		$session->destroy();
-	}
+    // record session activity
+    if(!$segment->get('start_time'))
+    {
+        $segment->set('start_time', time());
+    }
+
+    $segment->set('last_activity', time());
+
+    // delete session expired also server side
+    if($segment->get('start_time') < (strtotime('-1 hours')) || $segment->get('start_time') < (strtotime('-20 mins')))
+    {
+        $session->clear();
+        $session->destroy();
+    }
 
     $dic->share($session);
 }
