@@ -90,7 +90,11 @@ if (!$isRobot)
     }
 
     // set cookie parameters
-    $session->setCookieParams(['lifetime' => 3600, 'path' => '/', 'domain' => $url['host'], 'secure' => $url['port'] == '443' ? true : false, 'httponly' => true]);
+    $session->setCookieParams(['lifetime' => 3600,
+		                       'path' => '/',
+		                       'domain' => $url['host'],
+		                       'secure' => $url['port'] == '443' ? true : false,
+		                       'httponly' => true]);
 
     $segment = $session->getSegment('User');
 
