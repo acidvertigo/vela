@@ -7,7 +7,7 @@ require __DIR__.'/../vendor/autoload.php';
 error_reporting(E_ALL|E_STRICT);
 
 // define environment
-$environment = 'Development';
+$environment = 'Development'; // Accepted values: Development or Production.
 
 $config = require 'Config/' . $environment . '/Config.php';
 
