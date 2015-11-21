@@ -131,7 +131,7 @@ if (!$isRobot)
 /**
  * Initialize router
  */
-$routeDefinitionCallback = function(\FastRoute\RouteCollector $r) {
+$routeDefinitionCallback = function (\FastRoute\RouteCollector $r) use ($environment) {
     $routes = require 'Config/' . $environment . '/Routes.php';
     foreach ($routes as $route)
     {
