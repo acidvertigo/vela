@@ -9,6 +9,8 @@ error_reporting(E_ALL|E_STRICT);
 // define environment
 $environment = 'development';
 
+require 'Config.php/Config.php'
+
 /**
 * Register the error handler
 */
