@@ -7,15 +7,15 @@ require __DIR__.'/../vendor/autoload.php';
 error_reporting(E_ALL|E_STRICT);
 
 // define environment
-$environment = 'development';
+$environment = 'Development';
 
-$config = require 'Config/Config.php';
+$config = require 'Config/' . $environment . '/Config.php';
 
 /**
 * Register the error handler
 */
 $whoops = new \Whoops\Run;
-if ($environment !== 'production')
+if ($environment !== 'Production')
 {
     $whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
 } else
@@ -61,7 +61,7 @@ $userAgent = $user->getUserAgent();
 $userIp    = $user->getUserIp();
 
 //check if user is a robot
-$robots  = require 'Config/Robots.php';
+$robots  = require 'Config/' . $environment . '/Robots.php';
 $isRobot = $user->isRobot($userAgent, $robots);
 
 if (!$isRobot)
@@ -132,7 +132,7 @@ if (!$isRobot)
  * Initialize router
  */
 $routeDefinitionCallback = function(\FastRoute\RouteCollector $r) {
-    $routes = require 'Config/Routes.php';
+    $routes = require 'Config/' . $environment . '/Routes.php';
     foreach ($routes as $route)
     {
         $r->addRoute($route[0], $route[1], $route[2]);
