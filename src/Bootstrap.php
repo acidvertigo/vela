@@ -44,7 +44,7 @@ $url = \Purl\Url::fromCurrent();
 $dic->share($url);
 
 /**
- * Start session object if user is not a robot
+ * Start user object
  */
 $user = $dic->make('\Vela\Core\User');
 $dic->share($user);
@@ -58,7 +58,9 @@ $isRobot = $user->isRobot($userAgent, $robots);
 
 if (!$isRobot)
 {
-    //Initialize session object
+    /**
+	 * Initialize session object
+	 */
     $session_factory = new \Aura\Session\SessionFactory;
     $session         = $session_factory->newInstance($_COOKIE);
 	
