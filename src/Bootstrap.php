@@ -76,6 +76,7 @@ if (!$isRobot)
     if ($segment->get('IPaddress') != $userIp || $segment->get('userAgent') != $userAgent)
     {
         $session->clear();
+		$session->destroy();
         $segment = $session->getSegment('User');
         $segment->set('IPaddress', $userIp);
         $segment->set('userAgent', $userAgent);
