@@ -61,6 +61,9 @@ if (!$isRobot)
     //Initialize session object
     $session_factory = new \Aura\Session\SessionFactory;
     $session         = $session_factory->newInstance($_COOKIE);
+	
+	// set session name
+	$session->setName('vela_id');
 
 	// set cookie parameters
     $session->setCookieParams(['lifetime' => 3600, 'path' => '/', 'domain' => $url['host'], 'secure' => $url['port'] == '443' ? true : false, 'httponly' => true]);
