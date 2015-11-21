@@ -73,9 +73,9 @@ if (!$isRobot)
     $session         = $session_factory->newInstance($_COOKIE);
 
     // set session name
-	if($session->getName !== 'vela_id')
+	if($session->getName() !== $config['session']['id'])
 	{
-        $session->setName('vela_id');
+        $session->setName($config['session']['id']);
 	}
 
 	// set cookie parameters
