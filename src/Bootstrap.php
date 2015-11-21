@@ -67,7 +67,7 @@ if (!$isRobot)
 
     $segment = $session->getSegment('User');
 
-	// prevent session hijacking
+    // prevent session hijacking
     if ($segment->get('IPaddress') != $userIp || $segment->get('userAgent') != $userAgent)
     {
         $session->clear();
@@ -92,6 +92,21 @@ if (!$isRobot)
         $session->setCookieParams(['secure' => false]);
 		$session->regenerateId();
     }
+	
+    // record session activity
+	if(!$segment->get('start_time'))
+	{
+	    $segment->set('start_time', time());
+	}
+	
+	$segment->set('last_activity', time());
+
+	// delete session expired also server side
+	if($segment->get('start_time') < (strtotime('-1 hours')) || $segment->get('start_time') < (strtotime('-20 mins')))
+	{
+		$session->clear();
+		$session->destroy();
+	}
 
     $dic->share($session);
 }
