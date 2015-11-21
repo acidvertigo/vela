@@ -34,7 +34,9 @@ $time = new \ICanBoogie\DateTime('now', $config['locale']['timezone']);
 /**
  * Database connection
  */
-$db = new \PDO('mysql:host=' . $config['database']['host'] . ';dbname=' . $config['database']['db_name'], $config['database']['user'], $config['database']['password']);
+$db = new \PDO('mysql:host=' . $config['database']['host'] . ';dbname=' . $config['database']['db_name'],
+		       $config['database']['user'], 
+		       $config['database']['password']);
 $db->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
 
 /**
