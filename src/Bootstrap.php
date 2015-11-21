@@ -55,18 +55,18 @@ $url = \Purl\Url::fromCurrent();
  */
 $dic = new \Auryn\Injector;
 
-// Share object instances
-$dic->share($db);
-$dic->share($request);
-$dic->share($response);
-$dic->share($time);
-$dic->share($url);
-
 /**
  * Start user object
  */
 $user = $dic->make('\Vela\Core\User');
 $dic->share($user);
+
+// Share object instances
+$services = [$db, $request, $response, $time, $url];
+foreach ($services as $service)
+{
+	$dic->share($service);
+}
 
 $userAgent = $user->getUserAgent();
 $userIp    = $user->getUserIp();
