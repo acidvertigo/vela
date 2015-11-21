@@ -73,10 +73,10 @@ if (!$isRobot)
     $session         = $session_factory->newInstance($_COOKIE);
 
     // set session name
-	if($session->getName() !== $config['session']['id'])
-	{
+    if($session->getName() !== $config['session']['id'])
+    {
         $session->setName($config['session']['id']);
-	}
+    }
 
 	// set cookie parameters
     $session->setCookieParams(['lifetime' => 3600, 'path' => '/', 'domain' => $url['host'], 'secure' => $url['port'] == '443' ? true : false, 'httponly' => true]);
