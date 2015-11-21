@@ -25,7 +25,7 @@ if ($environment !== 'production')
 $whoops->register();
 
 /**
- * Start Request REsponse Objects
+ * Start Request Response Objects
  */
 $request  = \Sabre\HTTP\Sapi::getRequest();
 $response = new \Sabre\HTTP\Response();
