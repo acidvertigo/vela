@@ -25,6 +25,11 @@ if ($environment !== 'production')
 $whoops->register();
 
 /**
+ * Initialize datetime
+ */
+$time = new \ICanBoogie\DateTime('now', 'Europe/Rome');
+
+/**
  * Start Request Response Objects
  */
 $request  = \Sabre\HTTP\Sapi::getRequest();
@@ -34,6 +39,7 @@ $response = new \Sabre\HTTP\Response();
  * Start dic container
  */
 $dic = new \Auryn\Injector;
+$dic->share($date);
 $dic->share($request);
 $dic->share($response);
 
