@@ -32,6 +32,12 @@ $whoops->register();
 $time = new \ICanBoogie\DateTime('now', $config['locale']['timezone']);
 
 /**
+ * Database connection
+ */
+$db = new \PDO('mysql:host=' . $config['database']['host'] . ';dbname=' . $config['database']['db_name'], $config['database']['username'], $config['database']['password']);
+$db->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+
+/**
  * Start Request Response Objects
  */
 $request  = \Sabre\HTTP\Sapi::getRequest();
@@ -41,9 +47,10 @@ $response = new \Sabre\HTTP\Response();
  * Start dic container
  */
 $dic = new \Auryn\Injector;
-$dic->share($time);
+$dic->share($db);
 $dic->share($request);
 $dic->share($response);
+$dic->share($time);
 
 /**
  * Start url parser
