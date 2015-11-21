@@ -59,10 +59,9 @@ $dic = new \Auryn\Injector;
  * Start user object
  */
 $user = $dic->make('\Vela\Core\User');
-$dic->share($user);
 
 // Share object instances
-$services = [$db, $request, $response, $time, $url];
+$services = [$db, $request, $response, $time, $user, $url];
 foreach ($services as $service)
 {
 	$dic->share($service);
