@@ -1,4 +1,4 @@
 composer.lock
 vendor/
-Config/Development
 nbproject/
+/src/Config/Development/
