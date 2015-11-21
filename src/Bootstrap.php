@@ -74,14 +74,13 @@ if (!$isRobot)
         $segment = $session->getSegment('User');
         $segment->set('IPaddress', $userIp);
         $segment->set('userAgent', $userAgent);
-        $segment->set('isSsl', $url['port'] !== 443 ? true : false);
+        $segment->set('isSsl', $url['port'] !== '443' ? true : false);
         $session->regenerateId();
     }
 
 	// regenerate session id and set cookie secure flag when switching between http and https
-    if($segment->get('isSsl') == false && $url['port'] == '443')
+	if($segment->get('isSsl') == false && $url['port'] == '443')
     {
-        
         $segment->set('isSsl', true);
         $session->setCookieParams(['secure' => true]);
 		$session->regenerateId();
