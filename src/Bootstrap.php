@@ -56,21 +56,21 @@ $url = \Purl\Url::fromCurrent();
 $dic = new \Auryn\Injector;
 
 /**
- * Start user object
- */
-$user = $dic->make('\Vela\Core\User');
-
-/**
  * Create mail service
  */
 $mail = new \SimpleMail;
 
 // Share object instances
-$services = [$db, $mail, $request, $response, $time, $user, $url];
+$services = [$db, $mail, $request, $response, $time, $url];
 foreach ($services as $service)
 {
     $dic->share($service);
 }
+
+/**
+ * Start user object
+ */
+$user = $dic->make('\Vela\Core\User');
 
 $userAgent = $user->getUserAgent();
 $userIp    = $user->getUserIp();
@@ -141,6 +141,7 @@ if (!$isRobot)
         $session->destroy();
     }
 
+    // share same instance of session object
     $dic->share($session);
 }
 
