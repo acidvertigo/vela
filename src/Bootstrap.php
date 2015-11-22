@@ -33,12 +33,12 @@ if ($environment !== 'Production')
     $whoops->pushHandler(new \Whoops\Handler\PlainTextHandler($logger));
     $whoops->pushHandler(function() use ($mail) {
         echo 'Friendly error page and send an email to the developer';
-		$message = \Swift_Message::newInstance();
+        $message = \Swift_Message::newInstance();
         $message->setSubject('Error notification')
         ->setFrom(array('john@doe.com' => 'John Doe'))
         ->setTo(array('test@example.com' => 'Doe John'))
-		->setBody('There was an error on your website')
-		->addPart('<q>check you log file for info</q>', 'text/html');
+        ->setBody('There was an error on your website')
+        ->addPart('<q>check you log file for info</q>', 'text/html');
         $mail->send($message);
     });
 }
