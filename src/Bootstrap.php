@@ -10,6 +10,15 @@ error_reporting(E_ALL|E_STRICT);
 $environment = 'Development'; // Accepted values: Development or Production.
 
 /**
+ * Start mailer
+ */
+$transport = \Swift_SmtpTransport::newInstance('smtp.example.com', 25)
+             ->setUsername('test@example.com')
+             ->setPassword('');
+
+$mail = \Swift_Mailer::newInstance($transport);
+
+/**
 * Register the error handler
 */
 $whoops = new \Whoops\Run;
@@ -22,10 +31,18 @@ if ($environment !== 'Production')
 {
     $logger = new \Katzgrau\KLogger\Logger(__DIR__ . '/logs', \Psr\Log\LogLevel::WARNING, ['extension' => 'log']);
     $whoops->pushHandler(new \Whoops\Handler\PlainTextHandler($logger));
-    $whoops->pushHandler(function() {
+    $whoops->pushHandler(function() use ($mail) {
         echo 'Friendly error page and send an email to the developer';
+		$message = \Swift_Message::newInstance();
+        $message->setSubject('Error notification')
+        ->setFrom(array('john@doe.com' => 'John Doe'))
+        ->setTo(array('test@example.com' => 'Doe John'))
+		->setBody('There was an error on your website')
+		->addPart('<q>check you log file for info</q>', 'text/html');
+        $mail->send($message);
     });
 }
+$whoops->register();
 
 // Load configuration file
 $config = require 'Config/' . $environment . '/Config.php';
