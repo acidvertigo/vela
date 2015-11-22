@@ -13,8 +13,8 @@ $environment = 'Development'; // Accepted values: Development or Production.
  * Start mailer
  */
 $transport = \Swift_SmtpTransport::newInstance('smtp.example.com', 25)
-             ->setUsername('test@example.com')
-             ->setPassword('');
+                ->setUsername('test@example.com')
+                ->setPassword('');
 
 $mail = \Swift_Mailer::newInstance($transport);
 
@@ -56,8 +56,8 @@ $time = new \ICanBoogie\DateTime('now', $config['locale']['timezone']);
  * Database connection
  */
 $db = new \PDO('mysql:host=' . $config['database']['host'] . ';dbname=' . $config['database']['db_name'],
-       $config['database']['user'], 
-       $config['database']['password']);
+        $config['database']['user'], 
+        $config['database']['password']);
 $db->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
 
 /**
@@ -114,10 +114,10 @@ if (!$isRobot)
 
     // set cookie parameters
     $session->setCookieParams(['lifetime' => 3600,
-                               'path' => '/',
-                               'domain' => $url['host'],
-                               'secure' => $ssl,
-                               'httponly' => true]);
+                                'path' => '/',
+                                'domain' => $url['host'],
+                                'secure' => $ssl,
+                                'httponly' => true]);
 
     // create session segment
     $segment = $session->getSegment('User');
