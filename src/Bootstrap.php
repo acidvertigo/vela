@@ -35,8 +35,8 @@ $time = new \ICanBoogie\DateTime('now', $config['locale']['timezone']);
  * Database connection
  */
 $db = new \PDO('mysql:host=' . $config['database']['host'] . ';dbname=' . $config['database']['db_name'],
-		       $config['database']['user'], 
-		       $config['database']['password']);
+       $config['database']['user'], 
+       $config['database']['password']);
 $db->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
 
 /**
@@ -69,7 +69,7 @@ $mail = new \SimpleMail;
 $services = [$db, $mail, $request, $response, $time, $user, $url];
 foreach ($services as $service)
 {
-	$dic->share($service);
+    $dic->share($service);
 }
 
 $userAgent = $user->getUserAgent();
@@ -92,14 +92,18 @@ if (!$isRobot)
     {
         $session->setName($config['session']['id']);
     }
+    
+    // determine if we are on https or not
+    $ssl = ($url['port'] == '443') ? true : false;
 
     // set cookie parameters
     $session->setCookieParams(['lifetime' => 3600,
-		                       'path' => '/',
-		                       'domain' => $url['host'],
-		                       'secure' => $url['port'] == '443' ? true : false,
-		                       'httponly' => true]);
+                               'path' => '/',
+                               'domain' => $url['host'],
+                               'secure' => $ssl,
+                               'httponly' => true]);
 
+    // create session segment
     $segment = $session->getSegment('User');
 
     // prevent session hijacking
@@ -110,22 +114,15 @@ if (!$isRobot)
         $segment = $session->getSegment('User');
         $segment->set('IPaddress', $userIp);
         $segment->set('userAgent', $userAgent);
-        $segment->set('isSsl', $url['port'] !== '443' ? true : false);
+        $segment->set('isSsl', $ssl);
         $session->regenerateId();
     }
 
     // regenerate session id and set cookie secure flag when switching between http and https
-    if($segment->get('isSsl') == false && $url['port'] == '443')
+    if($segment->get('isSsl') !== $ssl)
     {
-        $segment->set('isSsl', true);
-        $session->setCookieParams(['secure' => true]);
-        $session->regenerateId();
-    }
-        
-    if($segment->get('isSsl') == true && $url['port'] !== '443')
-    {
-        $segment->set('isSsl', false);
-        $session->setCookieParams(['secure' => false]);
+        $segment->set('isSsl', $ssl);
+        $session->setCookieParams(['secure' => $ssl]);
         $session->regenerateId();
     }
 
