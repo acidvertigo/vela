@@ -21,7 +21,7 @@
         "jwage/purl": "@dev",
         "aura/session": ">=2.0.1",
         "icanboogie/datetime" : ">=1.1.1",
-        "eoghanobrien/php-simple-mail": ">=1.5.0",
+        "txthinking/mailer": ">=1.2.3",
         "katzgrau/klogger": ">=1.2.0"
     },
     "autoload": {
