@@ -60,8 +60,13 @@ $dic = new \Auryn\Injector;
  */
 $user = $dic->make('\Vela\Core\User');
 
+/**
+ * Create mail object
+ */
+$mail = new \SimpleMail();
+
 // Share object instances
-$services = [$db, $request, $response, $time, $user, $url];
+$services = [$db, $mail, $request, $response, $time, $user, $url];
 foreach ($services as $service)
 {
 	$dic->share($service);
