@@ -9,22 +9,26 @@ error_reporting(E_ALL|E_STRICT);
 // define environment
 $environment = 'Development'; // Accepted values: Development or Production.
 
-$config = require 'Config/' . $environment . '/Config.php';
-
 /**
 * Register the error handler
 */
 $whoops = new \Whoops\Run;
 if ($environment !== 'Production')
-{
+{ 
+    //start logger
+    $logger = new \Katzgrau\KLogger\Logger(__DIR__ . '/logs', \Psr\Log\LogLevel::WARNING, ['extension' => 'log']);
     $whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
 } else
 {
+    $logger = new \Katzgrau\KLogger\Logger(__DIR__ . '/logs', \Psr\Log\LogLevel::DEBUG, ['extension' => 'log']);
+    $whoops->pushHandler(new \Whoops\Handler\PlainTextHandler($logger));
     $whoops->pushHandler(function() {
         echo 'Friendly error page and send an email to the developer';
     });
 }
-$whoops->register();
+
+// Load configuration file
+$config = require 'Config/' . $environment . '/Config.php';
 
 /**
  * Initialize datetime
