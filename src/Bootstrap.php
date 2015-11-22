@@ -16,11 +16,11 @@ $whoops = new \Whoops\Run;
 if ($environment !== 'Production')
 { 
     //start logger
-    $logger = new \Katzgrau\KLogger\Logger(__DIR__ . '/logs', \Psr\Log\LogLevel::WARNING, ['extension' => 'log']);
+    $logger = new \Katzgrau\KLogger\Logger(__DIR__ . '/logs', \Psr\Log\LogLevel::DEBUG, ['extension' => 'log']);
     $whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
 } else
 {
-    $logger = new \Katzgrau\KLogger\Logger(__DIR__ . '/logs', \Psr\Log\LogLevel::DEBUG, ['extension' => 'log']);
+    $logger = new \Katzgrau\KLogger\Logger(__DIR__ . '/logs', \Psr\Log\LogLevel::WARNING, ['extension' => 'log']);
     $whoops->pushHandler(new \Whoops\Handler\PlainTextHandler($logger));
     $whoops->pushHandler(function() {
         echo 'Friendly error page and send an email to the developer';
@@ -58,11 +58,6 @@ $url = \Purl\Url::fromCurrent();
  * Start dic container
  */
 $dic = new \Auryn\Injector;
-
-/**
- * Create mail service
- */
-$mail = new \SimpleMail;
 
 // Share object instances
 $services = [$db, $mail, $request, $response, $time, $url];
