@@ -22,7 +22,8 @@
         "aura/session": ">=2.0.1",
         "icanboogie/datetime" : ">=1.1.1",
         "swiftmailer/swiftmailer": "=5.4.1",
-        "katzgrau/klogger": ">=1.2.0"
+        "katzgrau/klogger": ">=1.2.0",
+        "hassankhan/config": ">=0.8.2"
     },
     "autoload": {
         "psr-4": {
