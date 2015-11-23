@@ -27,9 +27,7 @@ class Homepage
 
     public function show()
     {
-        $data = $this->request->getQueryParameters();
-        $url  = $this->url->getUrl();
-        $this->response->setBody('Hello World '.$data['name'].' current url '.$url);
+        $this->response->setBody('<h1>Hello World</h1>');
         \Sabre\HTTP\Sapi::sendResponse($this->response);
     }
 }
