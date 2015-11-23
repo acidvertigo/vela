@@ -7,14 +7,23 @@ require __DIR__.'/../vendor/autoload.php';
 error_reporting(E_ALL|E_STRICT);
 
 // define environment
-$environment = 'Development'; // Accepted values: Development or Production.
+$environment = 'Production'; // Accepted values: Development or Production.
+
+// Load configuration file
+$config = require 'Config/' . $environment . '/Config.php';
 
 /**
  * Start mailer
  */
-$transport = \Swift_SmtpTransport::newInstance('smtp.example.com', 25)
-                ->setUsername('test@example.com')
-                ->setPassword('');
+if ($config['mailer']['system'] == 'phpmail')
+{
+    $transport = \Swift_MailTransport::newInstance();
+} else
+{
+    $transport = \Swift_SmtpTransport::newInstance('smtp.example.com', 25)
+                    ->setUsername('test@example.com')
+                    ->setPassword('');
+}
 
 $mail = \Swift_Mailer::newInstance($transport);
 
@@ -43,9 +52,6 @@ if ($environment !== 'Production')
     });
 }
 $whoops->register();
-
-// Load configuration file
-$config = require 'Config/' . $environment . '/Config.php';
 
 /**
  * Initialize datetime
