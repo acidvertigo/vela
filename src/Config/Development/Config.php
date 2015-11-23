@@ -1,5 +1,4 @@
 <?php
-
 return [
     'database' => [
         'host' => 'localhost',
@@ -11,8 +10,10 @@ return [
         'timezone' => 'Europe/Rome',
         'default_language' => 'en'
     ],
+	'mailer' => [
+		'system' => 'phpmail'
+	],
     'session' => [
         'id' => 'vela_id'
     ]            
 ];
-
