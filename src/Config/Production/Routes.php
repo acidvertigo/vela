@@ -1,5 +1,5 @@
 <?php
 
 return [
-    ['GET', '/vela-commerce', ['Vela\Controllers\Homepage', 'show']],
+    ['GET', '/', ['Vela\Controllers\Homepage', 'show']],
 ];
