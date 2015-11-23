@@ -1,5 +1,4 @@
 composer.lock
 vendor/
 nbproject/
-src/Config/Development/
 src/logs/
