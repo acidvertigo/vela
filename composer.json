@@ -11,11 +11,11 @@
             "role": "Creator / Main Developer"
         }
     ],
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "require": {
         "php": ">=5.5.0",
-        "filp/whoops": ">=1.1.2",
-        "sabre/http" : ">=4.0.0",
+        "filp/whoops": ">=1.1.10",
+        "sabre/http" : ">=4.1.0",
         "nikic/fast-route": ">=0.6.0",
         "rdlowrey/auryn": ">=1.1.0",
         "jwage/purl": "@dev",
