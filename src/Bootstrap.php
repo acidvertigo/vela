@@ -10,7 +10,12 @@ error_reporting(E_ALL|E_STRICT);
 $environment = 'Development'; // Accepted values: Development or Production.
 
 // Load configuration file
-$config = require 'Config/' . $environment . '/Config.php';
+$configuration = require 'Config/' . $environment . '/Config.php';
+
+/**
+ * Initialize Configuration container
+ */
+$config = new Core\Config($configuration);
 
 /**
  * Start mailer
@@ -83,7 +88,7 @@ $url = \Purl\Url::fromCurrent();
 $dic = new \Auryn\Injector;
 
 // Share object instances
-$services = [$db, $mail, $request, $response, $time, $url];
+$services = [$config, $db, $mail, $request, $response, $time, $url];
 foreach ($services as $service)
 {
     $dic->share($service);
