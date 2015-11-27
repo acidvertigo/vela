@@ -12,7 +12,10 @@ return [
         'default_language' => 'en'
     ],
 	'mailer' => [
-		'system' => 'phpmail'
+		'system' => 'phpmail',
+		'from' => [
+			'jon@doe.com' => 'Vela Commerce'
+		]
 	],
     'session' => [
         'id' => 'vela_id'
