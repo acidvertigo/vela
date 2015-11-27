@@ -6,7 +6,7 @@ if ('ENVIRONMENT' !== 'Production')
 {
     error_reporting(E_ALL|E_STRICT);
 } else {
-	error_reporting(0);
+    error_reporting(0);
 }
 
-require __DIR__.'/src/Bootstrap.php';
+require __DIR__ . '/src/Bootstrap.php';
