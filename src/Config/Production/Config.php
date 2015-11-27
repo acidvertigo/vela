@@ -11,12 +11,12 @@ return [
         'timezone' => 'Europe/Rome',
         'default_language' => 'en'
     ],
-	'mailer' => [
-		'system' => 'phpmail',
-		'from' => [
-			'jon@doe.com' => 'Vela Commerce'
-		]
-	],
+    'mailer' => [
+        'system' => 'phpmail',
+        'from' => [
+            'jon@doe.com' => 'Vela Commerce'
+        ]
+    ],
     'session' => [
         'id' => 'vela_id'
     ]            
