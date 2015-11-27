@@ -41,9 +41,26 @@ class Mail
 	/**
 	 * @return \Swift_Mailer
 	 */
-    public function createMailer()
+    public function setMailer()
     {
         return \Swift_Mailer::newInstance($this->getTransport());
+    }
+	
+	/**
+	 * 
+	 * @param string $subject
+	 * @param string $msg
+	 * @param array $to
+	 * @return \Swift_Mailer
+	 */
+    public function setMessage($subject, $msg, array $to)
+    {
+        $message = \Swift_Message::newInstance();
+        $message->setSubject($subject)
+                ->setFrom($this->config->get('mailer.from'))
+               ->setTo($to)
+               ->addPart($msg, 'text/html');
+        return $this->createMailer()->send($message);
     }
     
 }
