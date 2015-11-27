@@ -33,7 +33,7 @@ if (ENVIRONMENT !== 'Production')
     $whoops->pushHandler(function() use ($mail) {
         echo 'Friendly error page and send an email to the developer';
         $mailer  = $mail->createMailer();
-        $mail->setMessage('Error notification', '<H1>Error</H1><br><p>There was an error on your website. Please check your log file for more info', array('test@test.com' => 'test'));
+        $mail->setMessage('Error notification', '<H1>Error</H1><br><p>There was an error on your website. Please check your log file for more info', ['test@test.com' => 'test']);
     });
 }
 $whoops->register();
