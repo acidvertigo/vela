@@ -26,7 +26,7 @@ class Config
     /**
      * Retrieves elements from config array
      *
-     * @param string $key
+     * @param string $key The configuration key to find. Supports dot notation
      * @return string|array returns a config value
      * @throws Exception when no $key found
      */
