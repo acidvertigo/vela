@@ -31,9 +31,9 @@ class Mail
             $this->transport = \Swift_MailTransport::newInstance();
         } else
         {
-             $this->transport = \Swift_SmtpTransport::newInstance('smtp.example.com', 25)
-                         ->setUsername('test@example.com')
-                         ->setPassword('');
+                $this->transport = \Swift_SmtpTransport::newInstance('smtp.example.com', 25)
+                            ->setUsername('test@example.com')
+                            ->setPassword('');
         }
         return $this->transport;
     }
@@ -58,8 +58,8 @@ class Mail
         $message = \Swift_Message::newInstance();
         $message->setSubject($subject)
                 ->setFrom($this->config->get('mailer.from'))
-               ->setTo($to)
-               ->addPart($msg, 'text/html');
+                ->setTo($to)
+                ->addPart($msg, 'text/html');
         return $this->createMailer()->send($message);
     }
 
