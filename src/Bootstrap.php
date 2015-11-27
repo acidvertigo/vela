@@ -2,7 +2,7 @@
 
 namespace Vela;
 
-require __DIR__.'/../vendor/autoload.php';
+require __DIR__ . '/../vendor/autoload.php';
 
 // Load configuration file
 $configuration = require 'Config/' . ENVIRONMENT . '/Config.php';
@@ -110,7 +110,7 @@ if (!$isRobot)
     $session         = $session_factory->newInstance($_COOKIE);
 
     // set session name
-    if($session->getName() !== $config->get('session.id'))
+    if ($session->getName() !== $config->get('session.id'))
     {
         $session->setName($config->get('session.id'));
     }
@@ -141,7 +141,7 @@ if (!$isRobot)
     }
 
     // regenerate session id and set cookie secure flag when switching between http and https
-    if($segment->get('isSsl') !== $ssl)
+    if ($segment->get('isSsl') !== $ssl)
     {
         $segment->set('isSsl', $ssl);
         $session->setCookieParams(['secure' => $ssl]);
@@ -149,7 +149,7 @@ if (!$isRobot)
     }
 
     // record session activity
-    if(!$segment->get('start_time'))
+    if (!$segment->get('start_time'))
     {
         $segment->set('start_time', time());
     }
@@ -157,7 +157,7 @@ if (!$isRobot)
     $segment->set('last_activity', time());
 
     // delete session expired also server side
-    if($segment->get('start_time') < (strtotime('-1 hours')) || $segment->get('last_activity') < (strtotime('-20 mins')))
+    if ($segment->get('start_time') < (strtotime('-1 hours')) || $segment->get('last_activity') < (strtotime('-20 mins')))
     {
         $session->clear();
         $session->destroy();
@@ -179,7 +179,7 @@ $routeDefinitionCallback = function (\FastRoute\RouteCollector $r) {
 };
 
 $dispatcher = \FastRoute\simpleDispatcher($routeDefinitionCallback);
-$routeInfo  = $dispatcher->dispatch($request->getMethod(), '/'.$request->getPath());
+$routeInfo  = $dispatcher->dispatch($request->getMethod(), '/' . $request->getPath());
 switch ($routeInfo[0])
 {
     case \FastRoute\Dispatcher::NOT_FOUND:
