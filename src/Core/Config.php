@@ -44,7 +44,7 @@ class Config
                 throw new \InvalidArgumentException('Cannot find configuration key: ' . $key);
             }
         }
-
+        return $data;
     }
 
     /**
