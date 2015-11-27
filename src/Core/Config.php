@@ -11,7 +11,7 @@ namespace Vela\Core;
 class Config
 {
 
-        /** @var array $data Data configuration array */
+    /** @var array $data Data configuration array */
     private $data = [];
 
     /**
@@ -27,7 +27,7 @@ class Config
      * Retrieves elements from config array
      *
      * @param string $key
-     * @return mixed returns a config value
+     * @return string|array returns a config value
      * @throws Exception when no $key found
      */
     public function get($key)
