@@ -35,7 +35,7 @@ if (ENVIRONMENT !== 'Production')
         $mailer = $mail->createMailer();
         $message = \Swift_Message::newInstance();
         $message->setSubject('Error notification')
-        ->setFrom(array('john@doe.com' => 'John Doe'))
+        ->setFrom(array('john@doe.com' => 'Vela Commerce'))
         ->setTo(array('test@example.com' => 'Doe John'))
         ->setBody('There was an error on your website')
         ->addPart('<q>check you log file for info</q>', 'text/html');
