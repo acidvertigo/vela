@@ -38,21 +38,21 @@ class Mail
         return $this->transport;
     }
     
-	/**
-	 * @return \Swift_Mailer
-	 */
+    /**
+     * @return \Swift_Mailer
+     */
     public function createMailer()
     {
         return \Swift_Mailer::newInstance($this->getTransport());
     }
-	
-	/**
-	 * 
-	 * @param string $subject
-	 * @param string $msg
-	 * @param array $to
-	 * @return \Swift_Mailer
-	 */
+
+    /**
+     * 
+     * @param string $subject
+     * @param string $msg
+     * @param array $to
+     * @return \Swift_Mailer
+     */
     public function setMessage($subject, $msg, array $to)
     {
         $message = \Swift_Message::newInstance();
