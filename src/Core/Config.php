@@ -11,7 +11,7 @@ namespace Vela\Core;
 class Config
 {
 
-     /** @var array $data Data configuration array */
+        /** @var array $data Data configuration array */
     private $data = [];
 
     /**
@@ -39,9 +39,9 @@ class Config
         {
             if (isset($data[$part]))
             {
-               $data = $data[$part];
+                $data = $data[$part];
             } else {
-                throw new \InvalidArgumentException ('Cannot find configuration key: ' . $key);
+                throw new \InvalidArgumentException('Cannot find configuration key: ' . $key);
             } 
             
         }
