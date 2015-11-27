@@ -28,7 +28,7 @@ class Config
      *
      * @param string $key The configuration key to find. Supports dot notation
      * @return string|array returns a config value
-     * @throws Exception when no $key found
+     * @throws \InvalidArgumentException when no $key found
      */
     public function get($key)
     {
