@@ -15,17 +15,7 @@ $config = new Core\Config($configuration);
 /**
  * Start mailer
  */
-if ($config->get('mailer.system') == 'phpmail')
-{
-    $transport = \Swift_MailTransport::newInstance();
-} else
-{
-    $transport = \Swift_SmtpTransport::newInstance('smtp.example.com', 25)
-                    ->setUsername('test@example.com')
-                    ->setPassword('');
-}
-
-$mail = \Swift_Mailer::newInstance($transport);
+$mail = new Core\Mail($config);
 
 /**
 * Register the error handler
@@ -42,13 +32,14 @@ if (ENVIRONMENT !== 'Production')
     $whoops->pushHandler(new \Whoops\Handler\PlainTextHandler($logger));
     $whoops->pushHandler(function() use ($mail) {
         echo 'Friendly error page and send an email to the developer';
+        $mailer = $mail->createMailer();
         $message = \Swift_Message::newInstance();
         $message->setSubject('Error notification')
         ->setFrom(array('john@doe.com' => 'John Doe'))
         ->setTo(array('test@example.com' => 'Doe John'))
         ->setBody('There was an error on your website')
         ->addPart('<q>check you log file for info</q>', 'text/html');
-        $mail->send($message);
+        $mailer->send($message);
     });
 }
 $whoops->register();
