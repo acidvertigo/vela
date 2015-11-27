@@ -8,12 +8,10 @@ namespace Vela\Core;
  * Simple class to store or get elements from configuration registry
  */
 
-class Config implements \ArrayAccess, \Countable, \IteratorAggregate
+class Config
 {
 
-    use ArrayAccess;
-
-    /** @var array $data Data configuration array */
+     /** @var array $data Data configuration array */
     private $data = [];
 
     /**
@@ -22,28 +20,7 @@ class Config implements \ArrayAccess, \Countable, \IteratorAggregate
      */
     public function __construct(array $data = [])
     {
-        if(!empty($data)) {
-            foreach ($data as $key => $value) {
-                $this->set($key, $value);
-            }
-        }
-    }
-
-    /**
-     * Adds element to config array
-     *
-     * @param string $key - Config Key
-     * @param mixed $value - Config Value
-     * @throws Exception When there is a duplicate $key
-     */
-    public function set($key, $value)
-    {
-        if (isset($this->data[$key]))
-        {
-            throw new \Exception('There is already an entry for key: ' . $key);
-        }
-
-        $this->data[$key] = $value;
+        $this->data = $data;
     }
 
     /**
@@ -55,23 +32,21 @@ class Config implements \ArrayAccess, \Countable, \IteratorAggregate
      */
     public function get($key)
     {
-        if (!isset($this->data[$key]))
+        $data = $this->data;
+        $parts = explode('.', $key);
+        
+        foreach ($parts as $part)
         {
-            throw new \Exception('There is no entry for key: ' . $key);
+            if (isset($data[$part]))
+            {
+               $data = $data[$part];
+            } else {
+                throw new \InvalidArgumentException ('Cannot find configuration key: ' . $key);
+            } 
+            
         }
 
-        return $this->data[$key];
-    }
-
-    /**
-     * Remove an entry from the Config
-     *
-     * @param string $key
-     * @return void
-     */
-    public function remove($key)
-    {      
-        unset($this->data[$key]);
+        return $data;
     }
 
     /**
@@ -83,32 +58,6 @@ class Config implements \ArrayAccess, \Countable, \IteratorAggregate
     public function isEmpty($key)
     {
         return empty($this->data[$key]);
-    }
-
-    /**
-     * Reset Config container
-     */
-    public function reset() {
-        $this->data = [];
-    }
-
-    /**
-     * Return total number of data elements
-     * @return int
-     */
-    public function count()
-    {
-        return count($this->data);
-    }
-
-    /**
-     * IteratorAggregate interface required method
-     *
-     * @return \ArrayIterator
-     */
-    public function getIterator()
-    {
-        return new \ArrayIterator($this->data);
     }
 
 } 

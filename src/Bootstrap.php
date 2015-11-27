@@ -17,7 +17,7 @@ $config = new Core\Config($configuration);
 /**
  * Start mailer
  */
-if ($config['mailer']['system'] == 'phpmail')
+if ($config->get('mailer.system') == 'phpmail')
 {
     $transport = \Swift_MailTransport::newInstance();
 } else
@@ -58,14 +58,14 @@ $whoops->register();
 /**
  * Initialize datetime
  */
-$time = new \ICanBoogie\DateTime('now', $config['locale']['timezone']);
+$time = new \ICanBoogie\DateTime('now', $config->get('locale.timezone'));
 
 /**
  * Database connection
  */
-$db = new \PDO('mysql:host=' . $config['database']['host'] . ';dbname=' . $config['database']['db_name'],
-        $config['database']['user'], 
-        $config['database']['password']);
+$db = new \PDO('mysql:host=' . $config->get('database.host') . ';dbname=' . $config->get('database.db_name'),
+        $config->get('database.user'), 
+        $config->get('database.password'));
 $db->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
 
 /**
@@ -112,9 +112,9 @@ if (!$isRobot)
     $session         = $session_factory->newInstance($_COOKIE);
 
     // set session name
-    if($session->getName() !== $config['session']['id'])
+    if($session->getName() !== $config->get('session.id'))
     {
-        $session->setName($config['session']['id']);
+        $session->setName($config->get('session.id'));
     }
     
     // determine if we are on https or not
