@@ -62,5 +62,5 @@ class Mail
                ->addPart($msg, 'text/html');
         return $this->createMailer()->send($message);
     }
-    
+
 }
