@@ -41,7 +41,7 @@ class Mail
 	/**
 	 * @return \Swift_Mailer
 	 */
-    public function setMailer()
+    public function createMailer()
     {
         return \Swift_Mailer::newInstance($this->getTransport());
     }
