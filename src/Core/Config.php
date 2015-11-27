@@ -32,7 +32,7 @@ class Config
      */
     public function get($key)
     {
-        $data = $this->data;
+        $data  = $this->data;
         $parts = explode('.', $key);
         
         foreach ($parts as $part)
