@@ -7,7 +7,7 @@ require __DIR__.'/../vendor/autoload.php';
 error_reporting(E_ALL|E_STRICT);
 
 // Load configuration file
-$configuration = require 'Config/' . MODE . '/Config.php';
+$configuration = require 'Config/' . ENVIRONMENT . '/Config.php';
 
 /**
  * Initialize Configuration container
@@ -33,7 +33,7 @@ $mail = \Swift_Mailer::newInstance($transport);
 * Register the error handler
 */
 $whoops = new \Whoops\Run;
-if (MODE !== 'Production')
+if (ENVIRONMENT !== 'Production')
 { 
     //start logger
     $logger = new \Katzgrau\KLogger\Logger(__DIR__ . '/logs', \Psr\Log\LogLevel::DEBUG, ['extension' => 'log']);
@@ -100,7 +100,7 @@ $userAgent = $user->getUserAgent();
 $userIp    = $user->getUserIp();
 
 //check if user is a robot
-$robots  = require 'Config/' . MODE . '/Robots.php';
+$robots  = require 'Config/' . ENVIRONMENT . '/Robots.php';
 $isRobot = $user->isRobot($userAgent, $robots);
 
 if (!$isRobot)
@@ -173,7 +173,7 @@ if (!$isRobot)
  * Initialize router
  */
 $routeDefinitionCallback = function (\FastRoute\RouteCollector $r) {
-    $routes = require 'Config/' . MODE . '/Routes.php';
+    $routes = require 'Config/' . ENVIRONMENT . '/Routes.php';
     foreach ($routes as $route)
     {
         $r->addRoute($route[0], $route[1], $route[2]);
