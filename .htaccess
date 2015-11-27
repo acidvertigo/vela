@@ -1,5 +1,9 @@
+<Location /vendor>
+  Order deny,allow
+  Deny from all  
+</Location>
+
 RewriteEngine on
-RewriteRule ^vendor/(.*)?$ / [R=301,L]
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule . index.php [L]
