@@ -32,7 +32,6 @@ if (ENVIRONMENT !== 'Production')
     $whoops->pushHandler(new \Whoops\Handler\PlainTextHandler($logger));
     $whoops->pushHandler(function() use ($mail) {
         echo 'Friendly error page and send an email to the developer';
-        $mailer  = $mail->createMailer();
         $mail->setMessage('Error notification', '<H1>Error</H1><br><p>There was an error on your website. Please check your log file for more info', ['test@test.com' => 'test']);
     });
 }
