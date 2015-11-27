@@ -4,8 +4,6 @@ namespace Vela;
 
 require __DIR__.'/../vendor/autoload.php';
 
-error_reporting(E_ALL|E_STRICT);
-
 // Load configuration file
 $configuration = require 'Config/' . ENVIRONMENT . '/Config.php';
 
