@@ -12,18 +12,18 @@ class Mail
     private $config;
     private $transport;
 
-	/**
-	 * Class constructor
-	 * @param \Vela\Core\Config $config
-	 */
+    /**
+     * Class constructor
+     * @param \Vela\Core\Config $config
+     */
     public function __construct(Config $config)
     {
         $this->config = $config;
     }
     
-	/**
-	 * @return \Swift_SmtpTransport
-	 */
+    /**
+     * @return \Swift_SmtpTransport
+     */
     private function getTransport()
     {
         if ($this->config->get('mailer.system') == 'phpmail')
