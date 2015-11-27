@@ -32,7 +32,7 @@ if (ENVIRONMENT !== 'Production')
     $whoops->pushHandler(new \Whoops\Handler\PlainTextHandler($logger));
     $whoops->pushHandler(function() use ($mail) {
         echo 'Friendly error page and send an email to the developer';
-        $mailer = $mail->createMailer();
+        $mailer  = $mail->createMailer();
         $message = \Swift_Message::newInstance();
         $message->setSubject('Error notification')
         ->setFrom(array('john@doe.com' => 'Vela Commerce'))
