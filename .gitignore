@@ -3,3 +3,4 @@ vendor/
 nbproject/
 src/logs/
 src/Config/Development/
+src/Config/Production/
