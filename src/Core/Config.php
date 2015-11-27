@@ -39,7 +39,7 @@ class Config
         {
             if (isset($data[$part]))
             {
-                return $data[$part];
+                $data = $data[$part];
             } else {
                 throw new \InvalidArgumentException('Cannot find configuration key: ' . $key);
             }
