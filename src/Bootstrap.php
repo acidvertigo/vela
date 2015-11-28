@@ -15,7 +15,7 @@ $config = new Core\Config($configuration);
 /**
  * Start mailer
  */
-$mail = (function () use ($config)  {
+$mail = (function() use ($config)  {
             return new Core\Mail($config);
             });
 
@@ -48,7 +48,7 @@ $time = (function() use ($config) {return new \ICanBoogie\DateTime('now', $confi
 /**
  * Database connection
  */
-$db = (function () use ($config) { return new \PDO('mysql:host=' . $config->get('database.host') . ';dbname=' . $config->get('database.db_name'),
+$db = (function() use ($config) { return new \PDO('mysql:host=' . $config->get('database.host') . ';dbname=' . $config->get('database.db_name'),
         $config->get('database.user'), 
         $config->get('database.password'),
         [\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION]);
@@ -57,7 +57,7 @@ $db = (function () use ($config) { return new \PDO('mysql:host=' . $config->get(
 /**
  * Start Request Response Objects
  */
-$request  = (function () {
+$request  = (function() {
                 return \Sabre\HTTP\Sapi::getRequest();
                 });
 $response = (function() {
@@ -89,7 +89,7 @@ $userAgent = $user->getUserAgent();
 $userIp    = $user->getUserIp();
 
 //check if user is a robot
-$robots  = require 'Config/' . ENVIRONMENT . '/Robots.php';
+$robots = require 'Config/' . ENVIRONMENT . '/Robots.php';
 
 if (!$user->isRobot($userAgent, $robots))
 {
