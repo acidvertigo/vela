@@ -13,9 +13,11 @@ $configuration = require 'Config/' . ENVIRONMENT . '/Config.php';
 $config = new Core\Config($configuration);
 
 /**
- * Start mailer
+ * Define mail callback
  */
-$mail = new Core\Mail($config);
+$mail = (function () use ($config)  {
+          return new Core\Mail($config);
+         });
 
 /**
 * Register the error handler
@@ -32,7 +34,7 @@ if (ENVIRONMENT !== 'Production')
     $whoops->pushHandler(new \Whoops\Handler\PlainTextHandler($logger));
     $whoops->pushHandler(function() use ($mail) {
         echo 'Friendly error page and send an email to the developer';
-        $mail->setMessage('Error notification', '<H1>Error</H1><br><p>There was an error on your website. Please check your log file for more info', ['test@test.com' => 'test']);
+        $mail()->setMessage('Error notification', '<H1>Error</H1><br><p>There was an error on your website. Please check your log file for more info', ['test@test.com' => 'test']);
     });
 }
 $whoops->register();
