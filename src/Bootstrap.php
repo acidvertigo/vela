@@ -48,10 +48,11 @@ $time = (function() use ($config) {return new \ICanBoogie\DateTime('now', $confi
 /**
  * Database connection
  */
-$db = new \PDO('mysql:host=' . $config->get('database.host') . ';dbname=' . $config->get('database.db_name'),
+$db = (function () use ($config) { return new \PDO('mysql:host=' . $config->get('database.host') . ';dbname=' . $config->get('database.db_name'),
         $config->get('database.user'), 
-        $config->get('database.password'));
-$db->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+        $config->get('database.password'),
+        [\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION]);
+        });
 
 /**
  * Start Request Response Objects
