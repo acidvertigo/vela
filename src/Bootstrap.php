@@ -16,8 +16,8 @@ $config = new Core\Config($configuration);
  * Start mailer
  */
 $mail = (function () use ($config)  {
-          return new Core\Mail($config);
-         });
+            return new Core\Mail($config);
+            });
 
 /**
 * Register the error handler
@@ -42,7 +42,7 @@ $whoops->register();
 /**
  * Initialize datetime
  */
-$time = (function () use ($config) {return new \ICanBoogie\DateTime('now', $config->get('locale.timezone'));});
+$time = (function() use ($config) {return new \ICanBoogie\DateTime('now', $config->get('locale.timezone')); });
 
 /**
  * Database connection
@@ -56,14 +56,14 @@ $db->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
  * Start Request Response Objects
  */
 $request  = (function () {
-               return \Sabre\HTTP\Sapi::getRequest();
-               });
+                return \Sabre\HTTP\Sapi::getRequest();
+                });
 $response = (function() {
-               return new \Sabre\HTTP\Response();
-              });
+                return new \Sabre\HTTP\Response();
+                });
 /**
- * Start url parser
- */
+                 * Start url parser
+                 */
 $url = \Purl\Url::fromCurrent();
 
 /**
