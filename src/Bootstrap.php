@@ -63,8 +63,8 @@ $response = (function() {
                 return new \Sabre\HTTP\Response();
                 });
 /**
-                 * Start url parser
-                 */
+ * Start url parser
+ */
 $url = \Purl\Url::fromCurrent();
 
 /**
@@ -89,9 +89,8 @@ $userIp    = $user->getUserIp();
 
 //check if user is a robot
 $robots  = require 'Config/' . ENVIRONMENT . '/Robots.php';
-$isRobot = $user->isRobot($userAgent, $robots);
 
-if (!$isRobot)
+if (!$user->isRobot($userAgent, $robots))
 {
     /**
      * Initialize session object
