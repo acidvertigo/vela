@@ -13,7 +13,7 @@ $configuration = require 'Config/' . ENVIRONMENT . '/Config.php';
 $config = new Core\Config($configuration);
 
 /**
- * Define mail callback
+ * Start mailer
  */
 $mail = (function () use ($config)  {
           return new Core\Mail($config);
@@ -34,7 +34,7 @@ if (ENVIRONMENT !== 'Production')
     $whoops->pushHandler(new \Whoops\Handler\PlainTextHandler($logger));
     $whoops->pushHandler(function() use ($mail) {
         echo 'Friendly error page and send an email to the developer';
-        $mail()->setMessage('Error notification', '<H1>Error</H1><br><p>There was an error on your website. Please check your log file for more info', ['test@test.com' => 'test']);
+    $mail()->setMessage('Error notification', '<H1>Error</H1><br><p>There was an error on your website. Please check your log file for more info', ['test@test.com' => 'test']);
     });
 }
 $whoops->register();
@@ -55,8 +55,12 @@ $db->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
 /**
  * Start Request Response Objects
  */
-$request  = \Sabre\HTTP\Sapi::getRequest();
-$response = new \Sabre\HTTP\Response();
+$request  = (function () {
+               return \Sabre\HTTP\Sapi::getRequest();
+               });
+$response = (function() {
+               return new \Sabre\HTTP\Response();
+              });
 
 /**
  * Start url parser
@@ -69,7 +73,7 @@ $url = \Purl\Url::fromCurrent();
 $dic = new \Auryn\Injector;
 
 // Share object instances
-$services = [$config, $db, $mail, $request, $response, $time, $url];
+$services = [$config, $db, $mail(), $request(), $response(), $time, $url];
 foreach ($services as $service)
 {
     $dic->share($service);
@@ -165,13 +169,13 @@ $routeDefinitionCallback = function(\FastRoute\RouteCollector $r) {
 };
 
 $dispatcher = \FastRoute\simpleDispatcher($routeDefinitionCallback);
-$routeInfo  = $dispatcher->dispatch($request->getMethod(), '/' . $request->getPath());
+$routeInfo  = $dispatcher->dispatch($request()->getMethod(), '/' . $request()->getPath());
 switch ($routeInfo[0])
 {
     case \FastRoute\Dispatcher::NOT_FOUND:
         $response->setBody('404 - Page not found');
         $response->setStatus(404);
-        \Sabre\HTTP\Sapi::sendResponse($response);
+        \Sabre\HTTP\Sapi::sendResponse($response());
         exit;
         break;
     case \FastRoute\Dispatcher::METHOD_NOT_ALLOWED:
@@ -179,7 +183,7 @@ switch ($routeInfo[0])
         $response->setHeader('Allow', $allowedMethods);
         $response->setBody('405 - Method not allowed');
         $response->setStatus(405);
-        \Sabre\HTTP\Sapi::sendResponse($response);
+        \Sabre\HTTP\Sapi::sendResponse($response());
         exit;
         break;
     case \FastRoute\Dispatcher::FOUND:
