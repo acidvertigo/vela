@@ -74,7 +74,7 @@ $url = \Purl\Url::fromCurrent();
 $dic = new \Auryn\Injector;
 
 // Share object instances
-$services = [$config, $db, $mail(), $request(), $response(), $time(), $url];
+$services = [$config, $db(), $mail(), $request(), $response(), $time(), $url];
 foreach ($services as $service)
 {
     $dic->share($service);
