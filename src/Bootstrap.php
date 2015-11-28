@@ -42,7 +42,7 @@ $whoops->register();
 /**
  * Initialize datetime
  */
-$time = new \ICanBoogie\DateTime('now', $config->get('locale.timezone'));
+$time = (function () use ($config) {return new \ICanBoogie\DateTime('now', $config->get('locale.timezone'));});
 
 /**
  * Database connection
@@ -72,7 +72,7 @@ $url = \Purl\Url::fromCurrent();
 $dic = new \Auryn\Injector;
 
 // Share object instances
-$services = [$config, $db, $mail(), $request(), $response(), $time, $url];
+$services = [$config, $db, $mail(), $request(), $response(), $time(), $url];
 foreach ($services as $service)
 {
     $dic->share($service);
