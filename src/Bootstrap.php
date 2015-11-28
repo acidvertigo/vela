@@ -61,7 +61,6 @@ $request  = (function () {
 $response = (function() {
                return new \Sabre\HTTP\Response();
               });
-
 /**
  * Start url parser
  */
@@ -168,22 +167,25 @@ $routeDefinitionCallback = function(\FastRoute\RouteCollector $r) {
     }
 };
 
+$req = $request();
 $dispatcher = \FastRoute\simpleDispatcher($routeDefinitionCallback);
-$routeInfo  = $dispatcher->dispatch($request()->getMethod(), '/' . $request()->getPath());
+$routeInfo  = $dispatcher->dispatch($req->getMethod(), '/' . $req->getPath());
 switch ($routeInfo[0])
 {
     case \FastRoute\Dispatcher::NOT_FOUND:
-        $response->setBody('404 - Page not found');
-        $response->setStatus(404);
-        \Sabre\HTTP\Sapi::sendResponse($response());
+        $resp = $response();
+        $resp->setBody('404 - Page not found');
+        $resp->setStatus(404);
+        \Sabre\HTTP\Sapi::sendResponse($resp);
         exit;
         break;
     case \FastRoute\Dispatcher::METHOD_NOT_ALLOWED:
         $allowedMethods = $routeInfo[1];
-        $response->setHeader('Allow', $allowedMethods);
-        $response->setBody('405 - Method not allowed');
-        $response->setStatus(405);
-        \Sabre\HTTP\Sapi::sendResponse($response());
+        $resp = $response();
+        $resp->setHeader('Allow', $allowedMethods);
+        $resp->setBody('405 - Method not allowed');
+        $resp->setStatus(405);
+        \Sabre\HTTP\Sapi::sendResponse($resp);
         exit;
         break;
     case \FastRoute\Dispatcher::FOUND:
