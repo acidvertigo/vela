@@ -23,21 +23,23 @@ $mail = (function() use ($config)  {
 * Register the error handler
 */
 $whoops = new \Whoops\Run;
+
+//start logger
+$logger = function () use ($logLevel) { return new \Katzgrau\KLogger\Logger(__DIR__ . '/logs', \Psr\Log\LogLevel::$logLevel, ['extension' => 'log']);
+          };
+
 if (ENVIRONMENT !== 'Production')
-{ 
-    //start logger
-    $logger = new \Katzgrau\KLogger\Logger(__DIR__ . '/logs', \Psr\Log\LogLevel::DEBUG, ['extension' => 'log']);
-    $whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
-    $whoops->pushHandler(new \Whoops\Handler\PlainTextHandler($logger));
-} else
-{
-    $logger = new \Katzgrau\KLogger\Logger(__DIR__ . '/logs', \Psr\Log\LogLevel::WARNING, ['extension' => 'log']);
-    $whoops->pushHandler(new \Whoops\Handler\PlainTextHandler($logger));
+{   
+    $logLevel = 'DEBUG';
+    $whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);    
+} else {
+    $logLevel = 'WARNING';
     $whoops->pushHandler(function() use ($mail) {
         echo 'Friendly error page and send an email to the developer';
     $mail()->setMessage('Error notification', '<H1>Error</H1><br><p>There was an error on your website. Please check your log file for more info', ['test@test.com' => 'test']);
     });
 }
+$whoops->pushHandler(new \Whoops\Handler\PlainTextHandler($logger($logLevel)));
 $whoops->register();
 
 /**
