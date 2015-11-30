@@ -46,8 +46,8 @@ $whoops->register();
  * Initialize datetime
  */
 $time = (function() use ($config) {
-             return new \ICanBoogie\DateTime('now', $config->get('locale.timezone')); 
-         });
+                return new \ICanBoogie\DateTime('now', $config->get('locale.timezone')); 
+            });
 
 /**
  * Database connection
