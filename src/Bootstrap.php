@@ -45,12 +45,15 @@ $whoops->register();
 /**
  * Initialize datetime
  */
-$time = (function() use ($config) {return new \ICanBoogie\DateTime('now', $config->get('locale.timezone')); });
+$time = (function() use ($config) {
+             return new \ICanBoogie\DateTime('now', $config->get('locale.timezone')); 
+         });
 
 /**
  * Database connection
  */
-$db = (function() use ($config) { return new \PDO('mysql:host=' . $config->get('database.host') . ';dbname=' . $config->get('database.db_name'),
+$db = (function() use ($config) { 
+        return new \PDO('mysql:host=' . $config->get('database.host') . ';dbname=' . $config->get('database.db_name'),
         $config->get('database.user'), 
         $config->get('database.password'),
         [\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION]);
@@ -69,6 +72,8 @@ $response = (function() {
  * Start url parser
  */
 $url = \Purl\Url::fromCurrent();
+// determine if we are on https or not
+$ssl = ($url['port'] == '443') ? true : false;
 
 /**
  * Start dic container
@@ -82,6 +87,9 @@ foreach ($services as $service)
     $dic->share($service);
 }
 
+//check if user is a robot
+$robots = require 'Config/' . ENVIRONMENT . '/Robots.php';
+
 /**
  * Start user object
  */
@@ -89,9 +97,6 @@ $user = $dic->make('\Vela\Core\User');
 
 $userAgent = $user->getUserAgent();
 $userIp    = $user->getUserIp();
-
-//check if user is a robot
-$robots = require 'Config/' . ENVIRONMENT . '/Robots.php';
 
 if (!$user->isRobot($userAgent, $robots))
 {
@@ -107,9 +112,6 @@ if (!$user->isRobot($userAgent, $robots))
         $session->setName($config->get('session.id'));
     }
     
-    // determine if we are on https or not
-    $ssl = ($url['port'] == '443') ? true : false;
-
     // set cookie parameters
     $session->setCookieParams(['lifetime' => 3600,
                                 'path' => '/',
