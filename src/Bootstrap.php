@@ -24,10 +24,6 @@ $mail = (function() use ($config)  {
 */
 $whoops = new \Whoops\Run;
 
-//start logger
-$logger = function($logLevel) { return new \Katzgrau\KLogger\Logger(__DIR__ . '/logs', $logLevel, ['extension' => 'log']);
-          };
-
 if (ENVIRONMENT !== 'Production')
 {   
     $logLevel = \Psr\Log\LogLevel::DEBUG;
@@ -39,7 +35,11 @@ if (ENVIRONMENT !== 'Production')
     $mail()->setMessage('Error notification', '<H1>Error</H1><br><p>There was an error on your website. Please check your log file for more info', ['test@test.com' => 'test']);
     });
 }
-$whoops->pushHandler(new \Whoops\Handler\PlainTextHandler($logger($logLevel)));
+
+//start logger
+$logger = new \Katzgrau\KLogger\Logger(__DIR__ . '/logs', $logLevel, ['extension' => 'log']); 
+
+$whoops->pushHandler(new \Whoops\Handler\PlainTextHandler($logger));
 $whoops->register();
 
 /**
