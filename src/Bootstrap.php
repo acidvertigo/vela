@@ -30,10 +30,10 @@ $logger = function ($logLevel) { return new \Katzgrau\KLogger\Logger(__DIR__ . '
 
 if (ENVIRONMENT !== 'Production')
 {   
-    $logLevel = '\Psr\Log\LogLevel::DEBUG';
+    $logLevel = \Psr\Log\LogLevel::DEBUG;
     $whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);    
 } else {
-    $logLevel = '\Psr\Log\LogLevel::WARNING';
+    $logLevel = \Psr\Log\LogLevel::WARNING;
     $whoops->pushHandler(function() use ($mail) {
         echo 'Friendly error page and send an email to the developer';
     $mail()->setMessage('Error notification', '<H1>Error</H1><br><p>There was an error on your website. Please check your log file for more info', ['test@test.com' => 'test']);
