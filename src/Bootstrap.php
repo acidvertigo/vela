@@ -25,7 +25,7 @@ $mail = (function() use ($config)  {
 $whoops = new \Whoops\Run;
 
 //start logger
-$logger = function () use ($logLevel) { return new \Katzgrau\KLogger\Logger(__DIR__ . '/logs', \Psr\Log\LogLevel::$logLevel, ['extension' => 'log']);
+$logger = function ($logLevel) { return new \Katzgrau\KLogger\Logger(__DIR__ . '/logs', \Psr\Log\LogLevel::$logLevel, ['extension' => 'log']);
           };
 
 if (ENVIRONMENT !== 'Production')
