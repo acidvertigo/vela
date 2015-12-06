@@ -36,7 +36,7 @@ class Config
             throw new \Exception ('Duplicate config key' . print_r($duplicate_key));
         }
         
-        return array_merge($this->data, $array);
+        return $this->data + $array;
     }
 
     /**
