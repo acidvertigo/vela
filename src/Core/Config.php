@@ -33,7 +33,7 @@ class Config
         $duplicate_key = array_intersect_key($this->data, $array);
         if (!empty($duplicate_key))
         {
-            throw new \Exception ('Duplicate config key' . print_r($duplicate_key));
+            throw new \Exception('Duplicate config key' . print_r($duplicate_key));
         }
         
         return $this->data + $array;
