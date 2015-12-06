@@ -22,6 +22,21 @@ class Config
     {
         $this->data = $data;
     }
+    
+    /**
+     * Add another array to original configuration array
+     * @param array
+     * @throw \Exception
+     */
+    public function add(array $array)
+    {
+        if (!empty(array_intersect_key($this->data, $array)))
+        {
+            throw new \Exception ('Duplicate config key');
+        }
+        
+        return array_merge($this->data, $array);
+    }
 
     /**
      * Retrieves elements from config array
