@@ -26,13 +26,14 @@ class Config
     /**
      * Add another array to original configuration array
      * @param array
-     * @throw \Exception
+     * @throws \Exception
      */
     public function add(array $array)
     {
-        if (!empty(array_intersect_key($this->data, $array)))
+        $duplicate_key = array_intersect_key($this->data, $array);
+        if (!empty($duplicate_key))
         {
-            throw new \Exception ('Duplicate config key');
+            throw new \Exception ('Duplicate config key' . print_r($duplicate_key));
         }
         
         return array_merge($this->data, $array);
