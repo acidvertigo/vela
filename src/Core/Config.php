@@ -55,12 +55,12 @@ class Config
         
         foreach ($parts as $part)
         {
-            if (isset($data[$part]))
+            if (!isset($data[$part]))
             {
-                $data = $data[$part];
-            } else {
-                throw new \InvalidArgumentException('Cannot find configuration key: ' . $key);
+                throw new \InvalidArgumentException('Cannot find configuration key: ' . $key);               
             }
+ 
+            $data = $data[$part];
         }
         return $data;
     }
