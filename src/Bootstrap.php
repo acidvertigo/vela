@@ -9,10 +9,10 @@ if (!file_exists($autoloader))
      throw new \Exception ('Please install this app via composer.json. http://www.getcomposer.org');
 }
 
-require $autoloader;
+require_once $autoloader;
 
 // Load configuration file
-$configuration = require 'Config/' . ENVIRONMENT . '/Config.php';
+$configuration = require_once 'Config/' . ENVIRONMENT . '/Config.php';
 
 /**
  * Initialize Configuration container
@@ -95,7 +95,7 @@ foreach ($services as $service)
 }
 
 //check if user is a robot
-$robots = require 'Config/' . ENVIRONMENT . '/Robots.php';
+$robots = require_once 'Config/' . ENVIRONMENT . '/Robots.php';
 
 /**
  * Start user object
@@ -172,7 +172,7 @@ if (!$user->isRobot($userAgent, $robots))
  * Initialize router
  */
 $routeDefinitionCallback = function(\FastRoute\RouteCollector $r) {
-    $routes = require 'Config/' . ENVIRONMENT . '/Routes.php';
+    $routes = require_once 'Config/' . ENVIRONMENT . '/Routes.php';
     foreach ($routes as $route)
     {
         $r->addRoute($route[0], $route[1], $route[2]);
