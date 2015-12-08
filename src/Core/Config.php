@@ -25,7 +25,9 @@ class Config
     
     /**
      * Add another array to original configuration array
-     * @param array
+     *
+     * @param array $array list of configuration data to add
+     * @return array
      * @throws \Exception
      */
     public function add(array $array)
