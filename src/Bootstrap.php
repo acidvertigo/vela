@@ -2,7 +2,7 @@
 
 namespace Vela;
 
-$autoloader = '__DIR__' . '/../vendor/autoload.php';
+$autoloader = __DIR__ . '/vendor/autoload.php';
 
 if (!file_exists($autoloader))
 {
@@ -12,7 +12,7 @@ if (!file_exists($autoloader))
 require_once $autoloader;
 
 // Load configuration file
-$configuration = require_once 'Config/' . ENVIRONMENT . '/Config.php';
+$configuration = require_once __DIR__ . '/Config/' . ENVIRONMENT . '/Config.php';
 
 /**
  * Initialize Configuration container
@@ -95,7 +95,7 @@ foreach ($services as $service)
 }
 
 //check if user is a robot
-$robots = require_once 'Config/' . ENVIRONMENT . '/Robots.php';
+$robots = require_once __DIR__ . '/Config/' . ENVIRONMENT . '/Robots.php';
 
 /**
  * Start user object
@@ -172,7 +172,7 @@ if (!$user->isRobot($userAgent, $robots))
  * Initialize router
  */
 $routeDefinitionCallback = function(\FastRoute\RouteCollector $r) {
-    $routes = require_once 'Config/' . ENVIRONMENT . '/Routes.php';
+    $routes = require_once __DIR__ . '/Config/' . ENVIRONMENT . '/Routes.php';
     foreach ($routes as $route)
     {
         $r->addRoute($route[0], $route[1], $route[2]);
