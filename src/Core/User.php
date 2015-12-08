@@ -66,14 +66,8 @@ Class User
      */
     public function isRobot($userAgent, array $robots = [])
     {
-    foreach ($robots as $robot)
-    {
-        if (strpos(strtolower($userAgent), $robot) !== false)
+        foreach ($robots as $robot)
         {
-        return true;
+            return strpos(strtolower($userAgent), $robot);
         }
-    }
-
-    return false;
-    }
 }
