@@ -2,7 +2,14 @@
 
 namespace Vela;
 
-require __DIR__ . '/../vendor/autoload.php';
+$autoloader = '__DIR__' . '/../vendor/autoload.php';
+
+if (!file_exists($autoloader))
+{
+     throw new \Exception ('Please install this app via composer.json. http://www.getcomposer.org');
+}
+
+require $autoloader;
 
 // Load configuration file
 $configuration = require 'Config/' . ENVIRONMENT . '/Config.php';
