@@ -70,4 +70,5 @@ Class User
         {
             return strpos(strtolower($userAgent), $robot);
         }
+    }
 }
