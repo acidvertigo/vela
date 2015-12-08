@@ -68,7 +68,12 @@ Class User
     {
         foreach ($robots as $robot)
         {
-            return strpos(strtolower($userAgent), $robot);
+            if (strpos(strtolower($userAgent), $robot) !== false)
+            {
+                return true;
+            }
+           
+           return false; 
         }
     }
 }
