@@ -63,7 +63,7 @@ $db = (function() use ($config) {
         return new \PDO('mysql:host=' . $config->get('database.host') . ';dbname=' . $config->get('database.db_name'),
         $config->get('database.user'), 
         $config->get('database.password'),
-        [\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION]);
+        [\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION, \PDO::FETCH_ASSOC]);
         });
 
 /**
