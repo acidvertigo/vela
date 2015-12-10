@@ -17,7 +17,7 @@ CREATE TABLE `Config_group` (
   `Name` VARCHAR(64) NOT NULL COMMENT 'Configuration group name',
   `Description` VARCHAR(255) NULL DEFAULT NULL COMMENT 'Configuration group description',
   PRIMARY KEY (`id`)
-); COMMENT 'Configuration Group table';
+) COMMENT 'Configuration Group table';
 
 
 # Foreign Keys
