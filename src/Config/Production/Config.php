@@ -16,9 +16,6 @@ return [
         'from' => [
             'jon@doe.com' => 'Vela Commerce'
         ]
-    ],
-    'session' => [
-        'id' => 'vela_id'
-    ]            
+    ]
 ];
 
