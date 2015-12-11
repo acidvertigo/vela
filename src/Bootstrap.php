@@ -67,19 +67,19 @@ $db = (function() use ($config) {
         });
         
         // Load configuration data from database
-        $stmt = $db()->prepare('SELECT Config_group.Name as Type, Config.Name, Config.Value FROM Config LEFT JOIN Config_group ON Config.id = Config_group.id');
+        $stmt = $db()->prepare('SELECT Config_group.Name as Type, Config.Name, Config.Value FROM Config JOIN Config_group WHERE Config.Config_group_id = Config_group.id');
         $stmt->execute();
+        $peppo = $stmt->fetchAll();
         
         $dbConfig = [];
-        foreach ($stmt->fetchAll() as $row)
+        foreach ($peppo as $row)
         {
             if (!isset($dbConfig[$row['Type']]))
             {
                 $dbConfig[$row['Type']] = [$row['Name'] => $row['Value']];
-            }
-
-            $dbConfig[$row['Type']] += [$row['Name'] => $row['Value']];
-
+            } else {
+                $dbConfig[$row['Type']] += [$row['Name'] => $row['Value']];
+           }
         }
 
         // Add database configuration to config array
@@ -139,11 +139,11 @@ if (!$user->isRobot($userAgent, $robots))
     }
     
     // set cookie parameters
-    $session->setCookieParams(['lifetime' => 3600,
-                                'path' => '/',
+    $session->setCookieParams([$config->get('cookie.lifetime'),
+                                $config->get('cookie.path'),
                                 'domain' => $url['host'],
                                 'secure' => $ssl,
-                                'httponly' => true]);
+                                $config->get('cookie.httponly')]);
 
     // create session segment
     $segment = $session->getSegment('User');
