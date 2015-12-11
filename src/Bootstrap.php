@@ -81,7 +81,7 @@ $db = (function() use ($config) {
 /**
  * Start Request Response Objects
  */
-$request  = (function() {
+$request = (function() {
                 return \Sabre\HTTP\Sapi::getRequest();
                 });
 $response = (function() {
