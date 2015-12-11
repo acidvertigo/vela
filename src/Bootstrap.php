@@ -65,6 +65,18 @@ $db = (function() use ($config) {
         $config->get('database.password'),
         [\PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION, \PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_ASSOC]);
         });
+        
+        // Load configuration data from database
+        $stmt = $db()->prepare('SELECT Config_group.Name as Type, Config.Name, Config.Value FROM Config LEFT JOIN Config_group USING (id)');
+        $stmt->execute();
+
+        foreach ($stmt->fetchAll() as $row)
+        {
+            $dbConfig[array_shift($row)] = $row;
+        }
+
+        // Add database configuration to config array
+        $config->add($dbConfig);
 
 /**
  * Start Request Response Objects
