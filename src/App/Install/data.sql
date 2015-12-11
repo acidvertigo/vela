@@ -31,7 +31,7 @@ ALTER TABLE `Config` ADD FOREIGN KEY (Config_group_id) REFERENCES `Config_group`
 
 # Data
 
--- INSERT INTO `Config` (`id`,`Name`,`Value`,`Description`,`Config_group_id`) VALUES
--- ('','','','','');
--- INSERT INTO `Config_group` (`id`,`Name`,`Description`) VALUES
--- ('','','');
+INSERT INTO `Config` (`id`,`Name`,`Value`,`Description`,`Config_group_id`) VALUES
+('1','id','vela_id','Session Name','1');
+INSERT INTO `Config_group` (`id`,`Name`,`Description`) VALUES
+('1','session','General Session settings');
