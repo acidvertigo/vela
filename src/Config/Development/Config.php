@@ -10,7 +10,7 @@ return [
         'timezone' => 'Europe/Rome',
         'default_language' => 'en'
     ],
-	'mailer' => [
-		'system' => 'phpmail'
-	]
+    'mailer' => [
+        'system' => 'phpmail'
+    ]
 ];
