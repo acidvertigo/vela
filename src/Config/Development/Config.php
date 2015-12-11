@@ -12,8 +12,5 @@ return [
     ],
 	'mailer' => [
 		'system' => 'phpmail'
-	],
-    'session' => [
-        'id' => 'vela_id'
-    ]            
+	]
 ];
