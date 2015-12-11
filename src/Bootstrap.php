@@ -135,17 +135,18 @@ if (!$user->isRobot($userAgent, $robots))
     $session         = $session_factory->newInstance($_COOKIE);
 
     // set session name
-    if ($session->getName() !== $config->get('session.id'))
+    $session_id = $config->get('session.id');
+    if ($session->getName() !== $session_id)
     {
-        $session->setName($config->get('session.id'));
+        $session->setName($session_id);
     }
     
     // set cookie parameters
     $session->setCookieParams([$config->get('cookie.lifetime'),
-                                $config->get('cookie.path'),
-                                'domain' => $url['host'],
-                                'secure' => $ssl,
-                                $config->get('cookie.httponly')]);
+                               $config->get('cookie.path'),
+                               'domain' => $url['host'],
+                               'secure' => $ssl,
+                               $config->get('cookie.httponly')]);
 
     // create session segment
     $segment = $session->getSegment('User');
