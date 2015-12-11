@@ -67,12 +67,19 @@ $db = (function() use ($config) {
         });
         
         // Load configuration data from database
-        $stmt = $db()->prepare('SELECT Config_group.Name as Type, Config.Name, Config.Value FROM Config LEFT JOIN Config_group USING (id)');
+        $stmt = $db()->prepare('SELECT Config_group.Name as Type, Config.Name, Config.Value FROM Config LEFT JOIN Config_group ON Config.id = Config_group.id');
         $stmt->execute();
-
+        
+        $dbConfig = [];
         foreach ($stmt->fetchAll() as $row)
         {
-            $dbConfig[array_shift($row)] = $row;
+            if (!isset($dbConfig[$row['Type']]))
+            {
+                $dbConfig[$row['Type']] = [$row['Name'] => $row['Value']];
+            }
+
+            $dbConfig[$row['Type']] += [$row['Name'] => $row['Value']];
+
         }
 
         // Add database configuration to config array
