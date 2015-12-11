@@ -191,7 +191,7 @@ $routeDefinitionCallback = function(\FastRoute\RouteCollector $r) {
     }
 };
 
-$req = $request();
+$req        = $request();
 $dispatcher = \FastRoute\simpleDispatcher($routeDefinitionCallback);
 $routeInfo  = $dispatcher->dispatch($req->getMethod(), '/' . $req->getPath());
 switch ($routeInfo[0])
