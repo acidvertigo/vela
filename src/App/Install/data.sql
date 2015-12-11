@@ -29,9 +29,21 @@ ALTER TABLE `Config` ADD FOREIGN KEY (Config_group_id) REFERENCES `Config_group`
 -- ALTER TABLE `Config` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 -- ALTER TABLE `Config_group` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
-# Data
+# Config Data
+INSERT INTO `Config` (`Name`,`Value`,`Description`,`Config_group_id`) VALUES
+('id','vela_id','Session Name','1');
+INSERT INTO `Config` (`Name`,`Value`,`Description`,`Config_group_id`) VALUES
+('cookie','path','Session Name','1');
 
-INSERT INTO `Config` (`id`,`Name`,`Value`,`Description`,`Config_group_id`) VALUES
-('1','id','vela_id','Session Name','1');
-INSERT INTO `Config_group` (`id`,`Name`,`Description`) VALUES
-('1','session','General Session settings');
+# Config Group
+INSERT INTO `Config_group` (`Name`,`Description`) VALUES
+('session','General Session settings');
+INSERT INTO `Config_group` (`Name`,`Description`) VALUES
+('cookie','Cookie settings');
+
+
+lifetime' => 3600,
+                                'path' => '/',
+                                'domain' => $url['host'],
+                                'secure' => $ssl,
+                                'httponly' => true]
