@@ -22,29 +22,33 @@ CREATE TABLE `Config_group` (
 
 # Foreign Keys
 
-ALTER TABLE `Config` ADD FOREIGN KEY (Config_group_id) REFERENCES `Config_group` (`id`);
+ALTER TABLE `Config` ADD CONSTRAINT fkfilm ADD FOREIGN KEY (Config_group_id) REFERENCES `Config_group` (`id`) ON UPDATE CASCADE
+ON DELETE CASCADE;
+SET foreign_key_checks = 0;
 
 # Table Properties
 
--- ALTER TABLE `Config` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
--- ALTER TABLE `Config_group` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+ALTER TABLE `Config` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+ALTER TABLE `Config_group` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 # Config Data
 INSERT INTO `Config` (`Name`,`Value`,`Description`,`Config_group_id`) VALUES
-('id','vela_id','Session Name','1');
+('id','vela_id','Session Name', '1');
 INSERT INTO `Config` (`Name`,`Value`,`Description`,`Config_group_id`) VALUES
-('path', '/', 'Cookie Path','2');
+('path', '/', 'Cookie Path', '2');
 INSERT INTO `Config` (`Name`,`Value`,`Description`,`Config_group_id`) VALUES
-('domain', 'example.org', 'Cookie Domain','2');
+('domain', 'example.org', 'Cookie Domain', '2');
 INSERT INTO `Config` (`Name`,`Value`,`Description`,`Config_group_id`) VALUES
-('secure', false, 'Secure Cookie','2');
+('secure', false, 'Secure Cookie', '2');
 INSERT INTO `Config` (`Name`,`Value`,`Description`,`Config_group_id`) VALUES
-('lifetime', 3600, 'Cookie Lifetime','2');
+('lifetime', 3600, 'Cookie Lifetime', '2');
 INSERT INTO `Config` (`Name`,`Value`,`Description`,`Config_group_id`) VALUES
-('httponly', true, 'httponly cookie','2');
+('httponly', true, 'httponly cookie', '2');
 
 # Config Group
-INSERT INTO `Config_group` (`Name`,`Description`) VALUES
-('session','General Session settings');
-INSERT INTO `Config_group` (`Name`,`Description`) VALUES
-('cookie','Cookie settings');
+INSERT INTO `Config_group` (`id`, `Name`,`Description`) VALUES
+('1', 'session','General Session settings');
+INSERT INTO `Config_group` (`id` ,`Name`,`Description`) VALUES
+('2' , 'cookie','Cookie settings');
+
+SET foreign_key_checks = 1;
