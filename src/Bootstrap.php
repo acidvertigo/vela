@@ -32,10 +32,11 @@ $mail = (function() use ($config)  {
 $whoops = new \Whoops\Run;
 
 if (ENVIRONMENT !== 'Production')
-{   
+{
     $logLevel = \Psr\Log\LogLevel::DEBUG;
     $whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);    
-} else {
+} else
+{
     $logLevel = \Psr\Log\LogLevel::WARNING;
     $whoops->pushHandler(function() use ($mail) {
         echo 'Friendly error page and send an email to the developer';
@@ -77,9 +78,10 @@ $db = (function() use ($config) {
             if (!isset($dbConfig[$row['Type']]))
             {
                 $dbConfig[$row['Type']] = [$row['Name'] => $row['Value']];
-            } else {
+            } else
+            {
                 $dbConfig[$row['Type']] += [$row['Name'] => $row['Value']];
-           }
+            }
         }
 
         // Add database configuration to config array
