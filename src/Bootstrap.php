@@ -6,7 +6,7 @@ $autoloader = __DIR__ . '/../vendor/autoload.php';
 
 if (!file_exists($autoloader))
 {
-    throw new \Exception ('Please install this app via composer.json. http://www.getcomposer.org');
+    throw new \Exception('Please install this app via composer.json. http://www.getcomposer.org');
 }
 
 require_once $autoloader;
@@ -143,10 +143,10 @@ if (!$user->isRobot($userAgent, $robots))
     
     // set cookie parameters
     $session->setCookieParams([$config->get('cookie.lifetime'),
-                               $config->get('cookie.path'),
-                               'domain' => $url['host'],
-                               'secure' => $ssl,
-                               $config->get('cookie.httponly')]);
+                                $config->get('cookie.path'),
+                                'domain' => $url['host'],
+                                'secure' => $ssl,
+                                $config->get('cookie.httponly')]);
 
     // create session segment
     $segment = $session->getSegment('User');
