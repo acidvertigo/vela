@@ -68,7 +68,7 @@ $db = (function() use ($config) {
         });
         
         // Load configuration data from database
-        $stmt = $db()->prepare('SELECT Config_group.Name as Type, Config.Name, Config.Value FROM Config JOIN Config_group WHERE Config.Config_group_id = Config_group.id');
+        $stmt = $db()->prepare('SELECT Config_group.Name AS Type, Config.Name, Config.Value FROM Config JOIN Config_group WHERE Config.Config_group_id = Config_group.id');
         $stmt->execute();
         $peppo = $stmt->fetchAll();
         
