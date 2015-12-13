@@ -26,7 +26,7 @@ class Mail
      */
     private function getTransport()
     {
-        if ($this->config->get('mailer.system') == 'phpmail')
+        if ($this->config->get('mail.system') == 'phpmail')
         {
             $this->transport = \Swift_MailTransport::newInstance();
         } else
