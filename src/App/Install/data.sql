@@ -22,8 +22,7 @@ CREATE TABLE `Config_group` (
 
 # Foreign Keys
 
-ALTER TABLE `Config` ADD CONSTRAINT fkfilm ADD FOREIGN KEY (Config_group_id) REFERENCES `Config_group` (`id`) ON UPDATE CASCADE
-ON DELETE CASCADE;
+ALTER TABLE `Config` ADD FOREIGN KEY (Config_group_id) REFERENCES `Config_group` (`id`);
 SET foreign_key_checks = 0;
 
 # Table Properties
@@ -44,11 +43,15 @@ INSERT INTO `Config` (`Name`,`Value`,`Description`,`Config_group_id`) VALUES
 ('lifetime', 3600, 'Cookie Lifetime', '2');
 INSERT INTO `Config` (`Name`,`Value`,`Description`,`Config_group_id`) VALUES
 ('httponly', true, 'httponly cookie', '2');
+INSERT INTO `Config` (`Name`,`Value`,`Description`,`Config_group_id`) VALUES
+('system', 'phpmail', 'Mail transport system', '3');
 
 # Config Group
 INSERT INTO `Config_group` (`id`, `Name`,`Description`) VALUES
 ('1', 'session','General Session settings');
 INSERT INTO `Config_group` (`id` ,`Name`,`Description`) VALUES
 ('2' , 'cookie','Cookie settings');
+INSERT INTO `Config_group` (`id` ,`Name`,`Description`) VALUES
+('3' , 'mail','Mail settings');
 
 SET foreign_key_checks = 1;
