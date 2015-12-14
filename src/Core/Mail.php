@@ -23,19 +23,20 @@ class Mail
     
     /**
      * @return \Swift_SmtpTransport
+     * @throws \Exception
      */
     private function getTransport()
     {
-        if ($this->config->get('mail.system') == 'phpmail')
-        {
-            $this->transport = \Swift_MailTransport::newInstance();
-        } else
-        {
-                $this->transport = \Swift_SmtpTransport::newInstance('smtp.example.com', 25)
-                            ->setUsername('test@example.com')
-                            ->setPassword('');
+        switch ($this->config->get('mail.system')) {
+        case 'phpmail': 
+            return $this->transport = \Swift_MailTransport::newInstance();
+        case 'smtp':
+            return $this->transport = \Swift_SmtpTransport::newInstance('smtp.example.com', 25)
+                                      ->setUsername('test@example.com')
+                                      ->setPassword('');
+        default:
+            twrow new \Exception ('No valid Mail transport defined')
         }
-        return $this->transport;
     }
     
     /**
