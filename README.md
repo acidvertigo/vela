@@ -1,6 +1,6 @@
 Vela Ecommerce
 
-An ecommerce app based on external php packages.
+An ecommerce app based on external php packages and MySQL database.
 
 ## Install
 
