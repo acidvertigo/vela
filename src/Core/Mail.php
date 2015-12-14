@@ -26,7 +26,7 @@ class Mail
      */
     private function getTransport()
     {
-        return $this->newMailInstance(($this->config->get('mail.system') == 'phpmail')? false : true);
+        return $this->newMailInstance(($this->config->get('mail.system') == 'phpmail') ? false : true);
     }
     
     /**
@@ -34,11 +34,11 @@ class Mail
      */
     public function newMailInstance($smtp = false)
     {
-        if($smtp)
+        if ($smtp)
         {
-             return \Swift_SmtpTransport::newInstance('smtp.example.com', 25)
-                                      ->setUsername('test@example.com')
-                                      ->setPassword('');
+                return \Swift_SmtpTransport::newInstance('smtp.example.com', 25)
+                                        ->setUsername('test@example.com')
+                                        ->setPassword('');
         }
  
         return \Swift_MailTransport::newInstance();
