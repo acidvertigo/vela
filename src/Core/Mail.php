@@ -35,7 +35,7 @@ class Mail
                                       ->setUsername('test@example.com')
                                       ->setPassword('');
         default:
-            twrow new \Exception ('No valid Mail transport defined')
+            twrow new \Exception ('No valid Mail transport defined');
         }
     }
     
