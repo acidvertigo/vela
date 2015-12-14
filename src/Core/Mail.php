@@ -10,7 +10,6 @@ namespace Vela\Core;
 class Mail
 {
     private $config;
-    private $transport;
 
     /**
      * Class constructor
