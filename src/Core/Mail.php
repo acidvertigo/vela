@@ -35,7 +35,7 @@ class Mail
     {
         if ($smtp)
         {
-                return \Swift_SmtpTransport::newInstance('smtp.example.com', 25)
+            return \Swift_SmtpTransport::newInstance('smtp.example.com', 25)
                                         ->setUsername('test@example.com')
                                         ->setPassword('');
         }
