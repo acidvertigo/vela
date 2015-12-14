@@ -71,9 +71,9 @@ Class User
             if (strpos(strtolower($userAgent), $robot) !== false)
             {
                 return true;
-            }
-           
-            return false; 
+            } 
         }
+ 
+        return false;
     }
 }
