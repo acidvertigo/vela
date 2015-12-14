@@ -45,6 +45,14 @@ INSERT INTO `Config` (`Name`,`Value`,`Description`,`Config_group_id`) VALUES
 ('httponly', true, 'httponly cookie', '2');
 INSERT INTO `Config` (`Name`,`Value`,`Description`,`Config_group_id`) VALUES
 ('system', 'phpmail', 'Mail transport system', '3');
+INSERT INTO `Config` (`Name`,`Value`,`Description`,`Config_group_id`) VALUES
+('server', 'smtp.example.org', 'Smtp server', '3');
+INSERT INTO `Config` (`Name`,`Value`,`Description`,`Config_group_id`) VALUES
+('port', 25, 'Smtp server port', '3');
+INSERT INTO `Config` (`Name`,`Value`,`Description`,`Config_group_id`) VALUES
+('username', 'admin', 'Smtp account username', '3');
+INSERT INTO `Config` (`Name`,`Value`,`Description`,`Config_group_id`) VALUES
+('password', 'admin', 'Smtp account password', '3');
 
 # Config Group
 INSERT INTO `Config_group` (`id`, `Name`,`Description`) VALUES

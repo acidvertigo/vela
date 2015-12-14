@@ -35,9 +35,9 @@ class Mail
     {
         if ($smtp)
         {
-            return \Swift_SmtpTransport::newInstance('smtp.example.com', 25)
-                                        ->setUsername('test@example.com')
-                                        ->setPassword('');
+            return \Swift_SmtpTransport::newInstance($this->config->get('mail.server'), $this->config->get('mail.port'))
+                                        ->setUsername($this->config->get('mail.username'))
+                                        ->setPassword($this->config->get('mail.password'));
         }
  
         return \Swift_MailTransport::newInstance();
