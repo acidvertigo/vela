@@ -53,6 +53,8 @@ INSERT INTO `Config` (`Name`,`Value`,`Description`,`Config_group_id`) VALUES
 ('username', 'admin', 'Smtp account username', '3');
 INSERT INTO `Config` (`Name`,`Value`,`Description`,`Config_group_id`) VALUES
 ('password', 'admin', 'Smtp account password', '3');
+INSERT INTO `Config` (`Name`,`Value`,`Description`,`Config_group_id`) VALUES
+('from', 'text@example.org', 'Sender mail address', '3');
 
 # Config Group
 INSERT INTO `Config_group` (`id`, `Name`,`Description`) VALUES
