@@ -1,5 +1,4 @@
 <?php
-
 namespace Vela;
 
 $autoloader = __DIR__ . '/../vendor/autoload.php';

@@ -1,5 +1,4 @@
 <?php
-
 namespace Vela\Core;
 
 /**
@@ -7,7 +6,6 @@ namespace Vela\Core;
  *
  * Simple class to store or get elements from configuration registry
  */
-
 class Config
 {
 
@@ -50,6 +48,7 @@ class Config
      */
     public function get($key)
     {
+
         $data  = $this->data;
         $parts = explode('.', $key);
         

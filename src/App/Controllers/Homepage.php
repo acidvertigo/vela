@@ -1,5 +1,4 @@
 <?php
-
 namespace Vela\App\Controllers;
 
 use \Sabre\HTTP\Request;
