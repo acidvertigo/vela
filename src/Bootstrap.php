@@ -26,8 +26,8 @@ $mail = (function() use ($config)  {
             });
 
 /**
-* Register the error handler
-*/
+ * Register the error handler
+ */
 $whoops = new \Whoops\Run;
 
 if (ENVIRONMENT !== 'Production')
@@ -98,6 +98,7 @@ $response = (function() {
  * Start url parser
  */
 $url = \Purl\Url::fromCurrent();
+
 // determine if we are on https or not
 $ssl = ($url['port'] == '443') ? true : false;
 
@@ -202,6 +203,7 @@ $routeDefinitionCallback = function(\FastRoute\RouteCollector $r) {
 $req        = $request();
 $dispatcher = \FastRoute\simpleDispatcher($routeDefinitionCallback);
 $routeInfo  = $dispatcher->dispatch($req->getMethod(), '/' . $req->getPath());
+
 switch ($routeInfo[0])
 {
     case \FastRoute\Dispatcher::NOT_FOUND:
