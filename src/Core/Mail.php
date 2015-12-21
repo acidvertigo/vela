@@ -8,7 +8,7 @@ namespace Vela\Core;
  */
 class Mail
 {
-    /** @var \config $config \Vela\Config object */
+    /** @var Vela\Core\Config $config \Vela\Config object */
     private $config;
     /** @var bool $smtp True if smtp transport is set*/
     private $smtp;
