@@ -20,6 +20,14 @@ class Mail
         $this->config = $config;
         $this->smtp = $this->config->get('mail.system') == 'phpmail') ? false : true;
     }
+
+    /**
+     * @return \Swift_Mailer
+     */
+    public function createMailer()
+    {
+        return \Swift_Mailer::newInstance($this->getTransport());
+    }
     
     /**
      * Create a new mail object instance
@@ -35,14 +43,6 @@ class Mail
         }
  
         return \Swift_MailTransport::newInstance();
-    }
-    
-    /**
-     * @return \Swift_Mailer
-     */
-    public function createMailer()
-    {
-        return \Swift_Mailer::newInstance($this->getTransport());
     }
 
     /**
