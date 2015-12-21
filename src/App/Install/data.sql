@@ -1,4 +1,3 @@
-
 DROP TABLE IF EXISTS `Config`;
 		
 CREATE TABLE `Config` (
