@@ -49,10 +49,10 @@ class Mail
     }
 
     /**
-     * 
-     * @param string $subject
-     * @param string $msg
-     * @param array $to
+     * Set mail message content
+     * @param string $subject Mail Subject
+     * @param string $msg Mail Message
+     * @param array $to Mail to
      * @return \Swift_Mailer
      */
     public function setMessage($subject, $msg, array $to)
