@@ -1,5 +1,4 @@
 <?php
-
 return [
     'database' => [
         'host' => 'localhost',
@@ -12,10 +11,6 @@ return [
         'default_language' => 'en'
     ],
     'mailer' => [
-        'system' => 'phpmail',
-        'from' => [
-            'jon@doe.com' => 'Vela Commerce'
-        ]
+        'system' => 'phpmail'
     ]
 ];
-
