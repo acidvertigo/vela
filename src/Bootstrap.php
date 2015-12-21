@@ -215,7 +215,7 @@ switch ($routeInfo[0])
         break;
     case \FastRoute\Dispatcher::METHOD_NOT_ALLOWED:
         $allowedMethods = $routeInfo[1];
-        $resp = $response();
+        $resp           = $response();
         $resp->setHeader('Allow', $allowedMethods);
         $resp->setBody('405 - Method not allowed');
         $resp->setStatus(405);
