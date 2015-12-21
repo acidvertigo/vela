@@ -59,7 +59,7 @@ class Mail
     {
         $message = \Swift_Message::newInstance();
         $message->setSubject($subject)
-                ->setFrom($this->config->get('mailer.from'))
+                ->setFrom($this->config->get('mail.from'))
                 ->setTo($to)
                 ->addPart($msg, 'text/html');
         return $this->createMailer()->send($message);
