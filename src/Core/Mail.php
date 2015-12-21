@@ -15,7 +15,7 @@ class Mail
 
     /**
      * Class constructor
-     * @param \Vela\Core\Config $config
+     * @param Vela\Core\Config $config
      */
     public function __construct(Config $config)
     {
