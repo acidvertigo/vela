@@ -2,7 +2,7 @@
 
 define('ENVIRONMENT', 'Development'); // Accepted values: Development or Production.
 
-if ('ENVIRONMENT' !== 'Production')
+if (ENVIRONMENT !== 'Production')
 {
     error_reporting(E_ALL|E_STRICT);
 } else {
