@@ -20,7 +20,7 @@ class Mail
     public function __construct(Config $config)
     {
         $this->config = $config;
-        $this->smtp = $this->config->get('mail.system') == 'phpmail') ? false : true;
+        $this->smtp = ($this->config->get('mail.system') == 'phpmail') ? false : true;
     }
 
     /**
