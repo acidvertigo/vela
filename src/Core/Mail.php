@@ -9,6 +9,7 @@ namespace Vela\Core;
 class Mail
 {
     private $config;
+    private $smtp;
 
     /**
      * Class constructor
@@ -17,22 +18,16 @@ class Mail
     public function __construct(Config $config)
     {
         $this->config = $config;
+        $this->smtp = $this->config->get('mail.system') == 'phpmail') ? false : true;
     }
     
     /**
-     * @return \Swift_SmtpTransport
+     * Create a new mail object instance
+     * @return object \Swift mail or smtp transport
      */
-    private function getTransport()
+    public function getTransport()
     {
-        return $this->newMailInstance(($this->config->get('mail.system') == 'phpmail') ? false : true);
-    }
-    
-    /**
-     * @return \Swift_SmtpTransport
-     */
-    public function newMailInstance($smtp = false)
-    {
-        if ($smtp)
+        if ($this->smtp)
         {
             return \Swift_SmtpTransport::newInstance($this->config->get('mail.server'), (int)$this->config->get('mail.port'))
                                         ->setUsername($this->config->get('mail.username'))
