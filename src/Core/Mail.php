@@ -24,6 +24,7 @@ class Mail
     }
 
     /**
+     * Return a new mail object instance
      * @return \Swift_Mailer
      */
     public function createMailer()
@@ -32,7 +33,7 @@ class Mail
     }
     
     /**
-     * Create a new mail object instance
+     * Create a new mail transport instance
      * @return object \Swift mail or smtp transport
      */
     public function getTransport()
